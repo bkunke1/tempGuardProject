@@ -143,20 +143,13 @@
         <!-- Button trigger addSendorModal -->
         <button
           type="button"
-          id="dashAddSens"
+          id="dashAddSensBtn"
           class="btn btn-primary"
           data-toggle="modal"
           data-target="#dashAddSensorModal"
         >
           Add Sensor <i class="fas fa-temperature-high"></i>
         </button>
-        <br />
-        <br />
-        <!-- Button trigger simulateTempFeed -->
-        <button type="button" id="simTempBtn" class="btn btn-info">
-          Simulate Temp Feeds <i class="fas fa-chart-line"></i>
-        </button>
-        <h1 id="temptest">0</h1>
       </div>
 
       <!-- Add Sensor Modal -->
@@ -199,6 +192,16 @@
                     <label>Low Alarm</label>
                     <input type="text" class="form-control" id="lowAlarm1" />
                   </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-xs-3 mx-auto">
+                    <label>Calibrate Initial Temp</label>
+                    <input type="text" class="form-control" id="initialTemp" />
+                  </div>
+                  <!-- <div class="col-xs-3 mx-auto">
+                    <label>Low Alarm</label>
+                    <input type="text" class="form-control" id="#" />
+                  </div> -->
                 </div>
               </form>
             </div>
@@ -267,14 +270,14 @@
                 Current Temp: <span id="sensor0-currentTemp"></span
                 ><span class="cf-selector"></span>
               </h5>
-              <h6>Status: Normal</h6>
+              <h6>Status: <span id="sensor0-alarmStatus">Normal</span></h6>
               <h6>
                 High Alarm: <span id="sensor0-highAlarm">5</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
               <h6>
                 Low Alarm: <span id="sensor0-lowAlarm">-30</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
             </div>
           </div>
@@ -318,14 +321,14 @@
                 Current Temp: <span id="sensor1-currentTemp"></span
                 ><span class="cf-selector"></span>
               </h5>
-              <h6>Status: Normal</h6>
+              <h6>Status: <span id="sensor1-alarmStatus">Normal</span></h6>
               <h6>
                 High Alarm: <span id="sensor1-highAlarm">5</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
               <h6>
                 Low Alarm: <span id="sensor1-lowAlarm">-30</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
             </div>
           </div>
@@ -369,14 +372,14 @@
                 Current Temp: <span id="sensor2-currentTemp"></span
                 ><span class="cf-selector"></span>
               </h5>
-              <h6>Status: Normal</h6>
+              <h6>Status: <span id="sensor2-alarmStatus">Normal</span></h6>
               <h6>
                 High Alarm: <span id="sensor2-highAlarm">5</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
               <h6>
                 Low Alarm: <span id="sensor2-lowAlarm">-30</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
             </div>
           </div>
@@ -427,14 +430,14 @@
                 Current Temp: <span id="sensor3-currentTemp"></span
                 ><span class="cf-selector"></span>
               </h5>
-              <h6>Status: Normal</h6>
+              <h6>Status: <span id="sensor3-alarmStatus">Normal</span></h6>
               <h6>
                 High Alarm: <span id="sensor3-highAlarm">5</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
               <h6>
                 Low Alarm: <span id="sensor3-lowAlarm">-30</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
             </div>
           </div>
@@ -478,14 +481,14 @@
                 Current Temp: <span id="sensor4-currentTemp"></span
                 ><span class="cf-selector"></span>
               </h5>
-              <h6>Status: Normal</h6>
+              <h6>Status: <span id="sensor4-alarmStatus">Normal</span></h6>
               <h6>
                 High Alarm: <span id="sensor4-highAlarm">5</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
               <h6>
                 Low Alarm: <span id="sensor4-lowAlarm">-30</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
             </div>
           </div>
@@ -527,31 +530,40 @@
               <h3 id="sensor5-name">Cooler 6</h3>
               <h5>
                 Current Temp: <span id="sensor5-currentTemp"></span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h5>
-              <h6>Status: Normal</h6>
+              <h6>Status: <span id="sensor5-alarmStatus">Normal</span></h6>
               <h6>
                 High Alarm: <span id="sensor5-highAlarm">5</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
               <h6>
                 Low Alarm: <span id="sensor5-lowAlarm">-30</span
-                ><span class="cf-selector">F</span>
+                ><span class="cf-selector"></span>
               </h6>
             </div>
           </div>
         </div>
       </div>
     </section>
-
+    
     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h6>legal line...</h6>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <!-- Button trigger simulateTempFeed -->
+            <button type="button" id="simTempBtn" class="btn btn-info disabled">
+              Simulate Temp Feeds <i class="fas fa-chart-line"></i>
+            </button>
+          </div>
+          <div class="col-md-6 text-center">
+            <!-- Button trigger simulateTempFeed -->
+            <button type="button" id="stopTempFeedBtn" class="btn btn-danger">
+              Stop Temp Feed
+            </button>
+          </div>
         </div>
+      </div>
     </footer>
 
     <!-- Local scripts -->

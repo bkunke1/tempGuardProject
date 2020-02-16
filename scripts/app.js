@@ -20,38 +20,95 @@ const dashAddSensorModalCloseBtn = document.getElementById(
 );
 const loginModalLoginBtn = document.getElementById('loginModalLoginBtn');
 const simTempsBtn = document.getElementById('simTempBtn');
+const stopTempFeedBtn = document.getElementById('stopTempFeedBtn');
 // const s1currTemp = document.getElementById('s1-currTemp').value;
 
-const updateDOM = (listLength) => {
+// Obj -> String
+// consumes an object from sensorList and updates the alarmStatus property
+const updateAlarmStatus = (obj, i) => {
+  if (+obj.currentTemp >= +obj.highAlarm || +obj.currentTemp <= +obj.lowAlarm) {
+    obj.alarmStatus = ALARM;
+    document
+      .getElementById('sensor' + i + '-name')
+      .parentNode.classList.add('alarm-mode-bg');
+  } else {
+    obj.alarmStatus = NORMAL;
+    document
+      .getElementById('sensor' + i + '-name')
+      .parentNode.classList.remove('alarm-mode-bg');
+  }
+  return obj.alarmStatus;
+};
+
+const updateDegreeSymbolSelection = () => {
+  const listOfElements = document.getElementsByClassName('cf-selector');
+  for (let i = 0; i < listOfElements.length; i++) {
+    listOfElements[i].innerText = degreeSelected;
+  }
+};
+
+const toggleDisableAddSensorBtn = length => {
+  if (listLength > 5) {
+    document.getElementById('dashAddSensBtn').classList.add('disabled');
+    document.getElementById('dashAddSensBtn').setAttribute('data-toggle', '');
+  } else {
+    document.getElementById('dashAddSensBtn').classList.remove('disabled');
+    document
+      .getElementById('dashAddSensBtn')
+      .setAttribute('data-toggle', 'modal');
+  }
+};
+
+const toggleDisablesimulateTempsBtn = length => {
+  if (listLength > 0) {
+    simTempsBtn.classList.remove('disabled');
+  } else {
+    simTempsBtn.classList.add('disabled');
+  }
+};
+
+const updateDOM = listLength => {
   for (let i = 0; i < sensorList.length; i++) {
     document.getElementById('sensor' + i + '-name').innerText =
       sensorList[i].name;
+    document.getElementById('sensor' + i + '-currentTemp').innerText =
+      sensorList[i].currentTemp;
+    document.getElementById(
+      'sensor' + i + '-alarmStatus'
+    ).innerText = updateAlarmStatus(sensorList[i], i);
     document.getElementById('sensor' + i + '-highAlarm').innerText =
       sensorList[i].highAlarm;
     document.getElementById('sensor' + i + '-lowAlarm').innerText =
       sensorList[i].lowAlarm;
+    updateDegreeSymbolSelection();
     document.getElementById('s' + i).classList.remove('inactive-box');
-    document.getElementById('sensor' + i + '-currentTemp').innerText = sensorList[i].currentTemp;
-    if (listLength > 5) {   
-      document.getElementById('dashAddSensBtn').classList.add('disabled');
-      document.getElementById('dashAddSensBtn').setAttribute('data-toggle', '');
-    }
   }
 };
 
 const addSensor = () => {
+  const setupName = document.getElementById('sensorName1').value;
+  const setupCurrentTemp = document.getElementById('initialTemp').value;
+  const setupHighAlarm = document.getElementById('highAlarm1').value;
+  const setupLowAlarm = document.getElementById('lowAlarm1').value;
+  if (setupName && setupCurrentTemp && setupHighAlarm && setupLowAlarm) {
     sensorList[sensorList.length] = {
       id: sensorList.length + 1,
-      name: document.getElementById('sensorName1').value,
-      currentTemp: 0,
+      name: setupName,
+      currentTemp: setupCurrentTemp,
       alarmStatus: NORMAL,
-      highAlarm: document.getElementById('highAlarm1').value,
-      lowAlarm: document.getElementById('lowAlarm1').value,
+      highAlarm: setupHighAlarm,
+      lowAlarm: setupLowAlarm,
       displayStatus: ACTIVE
     };
-    $('#dashAddSensorModal').modal('toggle');    
+    $('#dashAddSensorModal').modal('toggle');
     listLength++;
+    console.log(listLength);
     updateDOM(listLength);
+    toggleDisableAddSensorBtn(listLength);
+    toggleDisablesimulateTempsBtn(listLength);
+  } else {
+    alert('Please fill all of the fields in order to update.');
+  }
 };
 
 dashAddSensorBtn.addEventListener('click', addSensor);
@@ -74,31 +131,58 @@ const loginLauncher = () => {
 // loginLauncher();
 // **Remove comment to activate login modal
 
-const simTempFeed = () => {
-    let randomNum;
-    function getRandomInt(min, max) {
-        min = Math.ceil(1);
-        max = Math.floor(5);
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
+// -> number
+// generates a random number to randomly add or subtract from sensor's current temp
+const simulateTempsFeed = () => {
+  let randomNum;
+  function getRandomInt(min, max) {
+    min = Math.ceil(1);
+    max = Math.floor(5);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 
-    randomNum = getRandomInt();
+  randomNum = getRandomInt();
 
+  function randomCalc(num) {
+    for (let i = 0; i < listLength; i++) {
 
-    function randomCalc(num) {
-        if (num > 0.5) {
-            sensorList[0].currentTemp = sensorList[0].currentTemp - randomNum;
-        } else {
-            sensorList[0].currentTemp = sensorList[0].currentTemp + randomNum;
-        }
-    }
-    
-    randomCalc(Math.random());
-    console.log(sensorList[0].currentTemp)
-    updateDOM();
+      if (num > 0.5) {
+        sensorList[i].currentTemp -= randomNum;
+
+        console.log('sensor_ID: ', i, ' - ', sensorList[i].currentTemp);
+      } else {
+        sensorList[i].currentTemp += randomNum;
+        console.log('sensor_ID: ', i, ' - ', sensorList[i].currentTemp);
+      }
+    } 
+  }
+
+  randomCalc(Math.random());
+  updateDOM();
+};
+
+// function simulateTemps() {
+//   if (simTempsBtn.classList.contains('disabled')) {
+//     return;
+//   } else {
+//     setInterval(simulateTempsFeed, 1300);
+//   }
+// }
+
+function simulateTemps() {
+  if (simTempsBtn.classList.contains('disabled')) {
+    return;
+  } else {
+    const idTest = setInterval(() => {
+      simulateTempsFeed()
+    }, 1300);
+  }
 }
 
-function simRun() {
-    setInterval(simTempFeed, 1300);
+simTempsBtn.addEventListener('click', simulateTemps);
+
+function stopTempFeed() {
+  clearInterval(idTest);
 }
 
+stopTempFeedBtn.addEventListener('click', stopTempFeed);
