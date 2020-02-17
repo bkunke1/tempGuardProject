@@ -23,6 +23,13 @@ const simTempsBtn = document.getElementById('simTempBtn');
 const stopTempFeedBtn = document.getElementById('stopTempFeedBtn');
 // const s1currTemp = document.getElementById('s1-currTemp').value;
 
+const settingsEditCompanyInfoBtn = document.getElementById(
+  'settingsEditCompanyInfo'
+);
+const settingsSaveCompanyInfoBtn = document.getElementById(
+  'settingsSaveCompanyInfo'
+);
+
 // Obj -> String
 // consumes an object from sensorList and updates the alarmStatus property
 const updateAlarmStatus = (obj, i) => {
@@ -61,9 +68,9 @@ const toggleDisableAddSensorBtn = length => {
 
 const toggleDisablesimulateTempsBtn = length => {
   if (listLength > 0) {
-    simTempsBtn.classList.remove('disabled');
+    simTempsBtn.disabled = false;
   } else {
-    simTempsBtn.classList.add('disabled');
+    simTempsBtn.disabled = true;
   }
 };
 
@@ -133,56 +140,95 @@ const loginLauncher = () => {
 
 // -> number
 // generates a random number to randomly add or subtract from sensor's current temp
-const simulateTempsFeed = () => {
-  let randomNum;
-  function getRandomInt(min, max) {
-    min = Math.ceil(1);
-    max = Math.floor(5);
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  randomNum = getRandomInt();
-
-  function randomCalc(num) {
-    for (let i = 0; i < listLength; i++) {
-
-      if (num > 0.5) {
-        sensorList[i].currentTemp -= randomNum;
-
-        console.log('sensor_ID: ', i, ' - ', sensorList[i].currentTemp);
-      } else {
-        sensorList[i].currentTemp += randomNum;
-        console.log('sensor_ID: ', i, ' - ', sensorList[i].currentTemp);
-      }
-    } 
-  }
-
-  randomCalc(Math.random());
-  updateDOM();
-};
-
-// function simulateTemps() {
-//   if (simTempsBtn.classList.contains('disabled')) {
-//     return;
-//   } else {
-//     setInterval(simulateTempsFeed, 1300);
+// const simulateTempsFeed = () => {
+//   let randomNum;
+//   function getRandomInt(min, max) {
+//     min = Math.ceil(1);
+//     max = Math.floor(5);
+//     return Math.floor(Math.random() * (max - min)) + min;
 //   }
-// }
 
-function simulateTemps() {
-  if (simTempsBtn.classList.contains('disabled')) {
+//   randomNum = getRandomInt();
+
+//   function randomCalc(num) {
+//     for (let i = 0; i < listLength; i++) {
+
+//       if (num > 0.5) {
+//         sensorList[i].currentTemp -= randomNum;
+
+//         console.log('sensor_ID: ', i, ' - ', sensorList[i].currentTemp);
+//       } else {
+//         sensorList[i].currentTemp += randomNum;
+//         console.log('sensor_ID: ', i, ' - ', sensorList[i].currentTemp);
+//       }
+//     }
+//   }
+
+//   randomCalc(Math.random());
+//   updateDOM();
+// };
+
+function simulateTemps(status = 'activate') {
+  let internalStatus = status;
+  if (simTempsBtn.disabled) {
+    console.log('btn failed');
     return;
   } else {
-    const idTest = setInterval(() => {
-      simulateTempsFeed()
-    }, 1300);
+    if (status === 'activate') {
+      const runTemps = setInterval(simulateTempsFeed, 3000);
+      internalStatus = 'inactivate';
+      return;
+    } else {
+      function stopTempFeed() {
+        clearInterval(runTemps);        
+      }
+      stopTempFeed();
+    }
+  }
+}
+
+
+
+
+function simulateTempsFeed() {
+  if (simTempsBtn.disabled) {
+    stopTempFeed();
+    return;
+  } else {
+    let randomNum;
+    function getRandomInt(min, max) {
+      min = Math.ceil(1);
+      max = Math.floor(5);
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    randomNum = getRandomInt();
+
+    function randomCalc(num) {
+      for (let i = 0; i < listLength; i++) {
+        if (num > 0.5) {
+          sensorList[i].currentTemp -= randomNum;
+
+          console.log('sensor_ID: ', i, ' - ', sensorList[i].currentTemp);
+        } else {
+          sensorList[i].currentTemp += randomNum;
+          console.log('sensor_ID: ', i, ' - ', sensorList[i].currentTemp);
+        }
+      }
+    }
+
+    randomCalc(Math.random());
+    updateDOM();
   }
 }
 
 simTempsBtn.addEventListener('click', simulateTemps);
+stopTempFeedBtn.addEventListener('click', simulateTemps.bind(event, 'test'));
 
-function stopTempFeed() {
-  clearInterval(idTest);
-}
+//settings page buttons
 
-stopTempFeedBtn.addEventListener('click', stopTempFeed);
+// const toggleCompanyInfoDisable = () => {
+//   document.getElementById('company-info-toggle').removeAttribute('disabled');
+// }
+
+// settingsEditCompanyInfoBtn.addEventListener('click', toggleCompanyInfoDisable);

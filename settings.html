@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Settings</title>
+
+    <!-- Bootstrap link -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome link -->
+    <script
+      src="https://kit.fontawesome.com/6dd5a532d9.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+    <!-- Local scripts -->
+    <script defer src="scripts/app.js" defer></script>
+    
+  </head>
+
+  <body>
+    <section id="navbar">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"
+          ><i class="fas fa-shield-alt"></i> TempGuard</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item active mx-auto">
+              <a class="nav-link" href="dashboard.html"
+                >Dashboard<span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="history.html">History</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="settings.html">Settings</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="manual.html">Manual</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="support.html">Support</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+
+    <main id="settings-main">
+      <div class="container">
+        <div class="row">
+          <div
+            class="btn-group mx-auto"
+            role="group"
+            aria-label="Basic example"
+          >
+            <button type="button" class="btn btn-secondary">
+              Company Profile
+            </button>
+            <button type="button" class="btn btn-secondary">
+              Sensor Settings
+            </button>
+            <button type="button" class="btn btn-secondary">Right</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10 mx-auto pt-3">
+            <div>
+              <h3>Company Profile</h3>
+              <br />
+            </div>
+            <form>
+                <fieldset id="company-info-toggle" disabled="disabled">
+              <div class="form-row">
+                <div class="form-group col-md-8">
+                  <label for="companyName">Company Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="companyName"
+                    placeholder="Company Name"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputAddress"
+                  placeholder="1234 Main St"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inputAddress2">Address 2</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputAddress2"
+                  placeholder="Apartment, studio, or floor"
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputCity">City</label>
+                  <input type="text" class="form-control"/>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputState">State</label>
+                  <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="inputZip">Zip</label>
+                  <input type="text" class="form-control"/>
+                </div>
+              </div>              
+            </fieldset>
+            <button
+                type="submit"
+                id="settingsEditCompanyInfo"
+                class="btn btn-primary"
+              >
+                Edit
+              </button>
+              <button
+                type="submit"
+                id="settingsSaveCompanyInfo"
+                class="btn btn-success"
+              >
+                Save
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-12 mx-auto text-center">
+            <h6>Scale of temperature</h6>
+            <form>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input
+                  type="radio"
+                  id="customRadioInline1"
+                  name="customRadioInline1"
+                  class="custom-control-input"
+                  checked
+                />
+                <label class="custom-control-label" for="customRadioInline1"
+                  >Fahrenheit</label
+                >
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input
+                  type="radio"
+                  id="customRadioInline2"
+                  name="customRadioInline1"
+                  class="custom-control-input"
+                />
+                <label class="custom-control-label" for="customRadioInline2"
+                  >Celsius</label
+                >
+              </div>
+
+              <h6>Alarm Hold</h6>
+              <h6>Email Alerts?</h6>
+              <h6>User Accounts</h6>
+              <h6>Alarm return to normal?</h6>
+              <h6>Log interval</h6>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 mx-auto pt-3">
+            <div>
+              <h3>User Profiles</h3>
+              <br />
+            </div>
+            <form>
+              <div class="form-row">
+                <form class="form-inline">
+                    <label class="sr-only" for="inlineFormInputName2">Name</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe">
+                  
+                    <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                      </div>
+                      <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+                    </div>
+                  
+                    <div class="form-check mb-2 mr-sm-2">
+                      <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+                      <label class="form-check-label" for="inlineFormCheck">
+                        Remember me
+                      </label>
+                    </div>
+                  
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                  </form>
+              </div>
+              <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="1234 Main St"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inputAddress2">Address 2</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Apartment, studio, or floor"
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputCity">City</label>
+                  <input type="text" class="form-control" id="inputCity" />
+                </div>
+
+                <div class="form-group col-md-2">
+                  <label for="inputZip">Zip</label>
+                  <input type="text" class="form-control" id="inputZip" />
+                </div>
+              </div>
+              <button
+                type="submit"
+                
+                class="btn btn-primary"
+              >
+                Edit
+              </button>
+              <button
+                type="submit"
+                
+                class="btn btn-success"
+              >
+                Save
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    
+
+    <!-- Bootstrap 4 scripts -->
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
