@@ -214,3 +214,9 @@
      font-size: 4rem;
      padding-top: 2rem;
  }
+
+ /* Settings */
+
+ input[type="text"].edit-background-change, textarea.edit-background-change {
+     background-color: lime;
+ }
