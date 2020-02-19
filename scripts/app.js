@@ -356,6 +356,7 @@ const editAddUser = () => {
   newTdForTable5.innerHTML = `<input type='checkbox' id='user1EmailAlert?${settingsUserTableCount}'/>`
   settingsAddNewUserBtn.style.display = 'none';
   settingsConfirmNewUserBtn.style.display = 'inline';
+  document.getElementById(`settingsAddUserInput${settingsUserTableCount}`).focus();
 
 
 
@@ -374,8 +375,25 @@ const confirmAddUser = () => {
   const userPhone = document.getElementById(`settingsAddPhoneInput${settingsUserTableCount}`).value;
   const receiveText = document.getElementById(`user1EmailAlert?${settingsUserTableCount}`).value;
 
-  console.log(userName, userEmail, receiveEmail, userPhone, receiveText);
+  const newTdForTable1 = document.getElementById(`settingsAddUserInput${settingsUserTableCount}`);
+  const newTdForTable2 = document.getElementById(`settingsAddEmailInput${settingsUserTableCount}`);
+  const newTdForTable3 = document.getElementById(`user1EmailAlert?${settingsUserTableCount}`);
+  const newTdForTable4 = document.getElementById(`settingsAddPhoneInput${settingsUserTableCount}`);
+  const newTdForTable5 = document.getElementById(`user1EmailAlert?${settingsUserTableCount}`);
 
+  console.log(userPhone);
+
+  if (userName && userEmail && receiveEmail && userPhone && receiveText) {
+
+  newTdForTable1.parentElement.innerText = userName;
+  newTdForTable2.parentElement.innerText = userEmail;
+  newTdForTable4.parentElement.innerText = userPhone;
+  
+  // if (receiveEmail === 'on') {newTdForTable3.addAttribute('checked')};
+  // if (receiveText === 'on') {newTdForTable5.addAttribute('checked')};
+  } else {
+    alert('fill all fields plz');
+  }
 }
 
 if (settingsConfirmNewUserBtn) {
@@ -383,3 +401,4 @@ if (settingsConfirmNewUserBtn) {
 }
 
 loadSettingsPage();
+
