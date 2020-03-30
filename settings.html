@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
 
     <!-- Local scripts -->
-    <script defer src="scripts/app.js" defer></script>
+    <script defer src="scripts/settings.js" defer></script>
   </head>
 
   <body>
@@ -70,21 +70,7 @@
 
     <main id="settings-main">
       <div class="container">
-        <div class="row">
-          <div
-            class="btn-group mx-auto"
-            role="group"
-            aria-label="Basic example"
-          >
-            <button type="button" class="btn btn-secondary">
-              Company Profile
-            </button>
-            <button type="button" class="btn btn-secondary">
-              Sensor Settings
-            </button>
-            <button type="button" class="btn btn-secondary">Right</button>
-          </div>
-        </div>
+        <div class="row"></div>
         <div class="row">
           <div class="col-md-10 mx-auto pt-3">
             <div>
@@ -208,8 +194,8 @@
           </div>
         </div>
         <div class="row pt-5">
-          <div class="col-md-12 mx-auto text-center">
-            <h6>Scale of temperature</h6>
+          <div class="col-md-12 mx-auto text-center mb-5">
+            <h3 class="mb-3">Scale of Temperature</h3>
             <form>
               <div class="custom-control custom-radio custom-control-inline">
                 <input
@@ -223,7 +209,9 @@
                   >Fahrenheit</label
                 >
               </div>
-              <div class="custom-control custom-radio custom-control-inline">
+              <div
+                class="custom-control custom-radio custom-control-inline mb-2"
+              >
                 <input
                   type="radio"
                   id="customRadioInline2"
@@ -234,18 +222,32 @@
                   >Celsius</label
                 >
               </div>
-
-              <h6>Alarm Hold</h6>
-              <h6>Email Alerts?</h6>
-              <h6>User Accounts</h6>
-              <h6>Alarm return to normal?</h6>
+              <!-- <h6>Alarm Hold</h6>
+              <div class="row">
+                <div class="col-md-2 mx-auto mb-3">
+                  <input type="text" class="form-control col-xs-2" id="alarmHold" />              
+                </div>
+              </div>
               <h6>Log interval</h6>
+              <div class="row">
+                <div class="col-md-2 mx-auto mb-3">
+                  <input type="text" class="form-control" id="alarmHold" />
+                </div>
+              </div> -->
+
+              <button
+                type="button"
+                id="savePreferencesBtn"
+                class="btn btn-success"
+              >
+                Save
+              </button>
             </form>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-12 mx-auto pt-3">
+          <div id="id1" class="col-md-12 text-center pt-3">
             <div>
               <h3>User Profiles</h3>
               <br />
@@ -262,27 +264,10 @@
                   <th scope="col">Email</th>
                   <th scope="col">Receive Email Alerts?</th>
                   <th scope="col">Phone</th>
-                  <th scope="col">Receive SMS alerts?</th>
+                  <th scope="col">Receive SMS Alerts?</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr id="settings-userTable1">
-                  <th scope="row">1</th>
-                  <td>Brandon</td>
-                  <td>brandon.lloyd.kunkel@gmail.com</td>
-                  <td class="text-center">
-                    <input type="checkbox" id="user1EmailAlert?" checked />
-                    <input
-                      type="button"
-                      value="Send Test"
-                      class="btn btn-primary btn-sm"
-                    />
-                  </td>
-                  <td>407-698-6113</td>
-                  <td class="text-center">
-                    <input type="checkbox" id="user1TextAlert?" checked />
-                  </td>
-                </tr>
+              <tbody id="eraseTable">
                 <tr id="settings-userTableLast">
                   <th scope="row">2</th>
                   <td>
@@ -303,10 +288,102 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
+                  <td>
+                    <input
+                      type="button"
+                      id="settingsEditUsers"
+                      class="btn btn-primary btn-sm"
+                      value="Edit Users"
+                      data-toggle="modal"
+                      data-target="#exampleModalCenter"
+                    />
+                  </td>
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModalCenter"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="userIDEditUserSelectModal">
+                  User Edit
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select User #</label>
+                    <select class="form-control" id="userIDEditUserSelect">
+                      
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="newNameEditUser"
+                      placeholder="New Name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="newEmaileditUser"
+                      placeholder="New Email Address"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="newPhoneEditUser"
+                      placeholder="New Phone Number"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button id="updateEditUserModalBtn" type="button" class="btn btn-success" data-dismiss="modal"  data-toggle="modal"
+                data-target="#userIDEditUserSelectModal">
+                  Update
+                </button>
+                <button
+                  type="button"
+                  id="deleteEditUserModalBtn"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
+                >
+                Delete User
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -314,8 +391,8 @@
       <footer>
         <div class="container">
           <div class="row">
-            <div class="col-md-6 mx-auto pt-5">
-              <h1 class="text-center">legal line</h1>
+            <div class="col-md-6 mx-auto text-center pt-1 mb-3">
+              <i class="fas fa-shield-alt"></i> TempGuard
             </div>
           </div>
         </div>

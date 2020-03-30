@@ -24,52 +24,170 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
   </head>
 
-  <body>
-
+  <body class="support-background">
     <section id="navbar">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-          <a class="navbar-brand" href="#"
-            ><i class="fas fa-shield-alt"></i> TempGuard</a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-              <li class="nav-item active mx-auto">
-                <a class="nav-link" href="dashboard.html"
-                  >Dashboard<span class="sr-only">(current)</span></a
-                >
-              </li>
-              <li class="nav-item mx-auto">
-                <a class="nav-link" href="history.html">History</a>
-              </li>
-              <li class="nav-item mx-auto">
-                <a class="nav-link" href="settings.html">Settings</a>
-              </li>
-              <li class="nav-item mx-auto">
-                <a class="nav-link" href="manual.html">Manual</a>
-              </li>
-              <li class="nav-item mx-auto">
-                <a class="nav-link" href="support.html">Support</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </section>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"
+          ><i class="fas fa-shield-alt"></i> TempGuard</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item active mx-auto">
+              <a class="nav-link" href="dashboard.html"
+                >Dashboard<span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="history.html">History</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="settings.html">Settings</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="manual.html">Manual</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="support.html">Support</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
 
-      <h1>support page</h1>
+    <div class="spacer1"></div>
+
+    <section>
+      <div class="row transparent-bg">
+        <div class="col-lg-4 my-auto ml-4">
+          <div>
+            <h5 class="d-inline bg.primary text-white font-weight-bold">
+              Address
+            </h5>
+            <div class="d-inline text-white ml-3 my-auto">
+              <i class="far fa-map"></i>
+            </div>
+            <p class="text-white mb-0">
+              Ivy Hill Center 10th floor, 580 Derby Ln
+            </p>
+            <p class="text-white">Atlanta, GA 30082</p>
+          </div>
+          <div>
+            <h5 class="d-inline bg.primary text-white">Call Us</h5>
+            <div class="d-inline text-white pb-3 ml-3">
+              <i class="fas fa-phone"></i>
+            </div>
+            <p class="supportText">+1 800 6986113</p>
+          </div>
+          <div>
+            <h5 class="d-inline bg.primary text-white">General Support</h5>
+            <div class="d-inline text-white ml-3 my-auto">
+              <i class="far fa-envelope"></i>
+            </div>
+            <p class="supportText">support@tempguard.com</p>
+          </div>
+        </div>
+        <div class="col mr-5 ml-4 border-0" id="testquery">
+          <form>
+            <div class="text-center mt-5">
+              <h4 id="assisstanceText">Need assitance? Send us a message!</h4>
+            </div>
+            <div class="form-group mt-3 mb-2">
+              <label for="firstNameInput">Tell us your name*</label>
+              <div class="form-row">
+                <div class="col border-0">
+                  <input
+                    type="text"
+                    id="supportRequestFormFirstName"
+                    class="form-control"
+                    placeholder="First name"
+                  />
+                </div>
+                <div class="col border-0">
+                  <input
+                    type="text"
+                    id="supportRequestFormLastName"
+                    class="form-control"
+                    placeholder="Last name"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="supportRequestFormEmail">Email Address*</label>
+              <input
+                type="email"
+                class="form-control"
+                id="supportRequestFormEmail"
+                placeholder="name@example.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="supportRequestFormPhone">Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="supportRequestFormPhone"
+                placeholder="Eg. 800-000-0000"
+              />
+            </div>
+            <div class="form-group">
+              <label for="supportRequestFormMessage">Message*</label>
+              <textarea
+                class="form-control"
+                id="supportRequestFormMessage"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="text-center mb-4">
+              <!-- <input
+                id="sendMessageBtn"
+                class="btn btn-info"
+                type="button"
+                value="Send Message"
+              /> -->
+              <button
+              id="sendMessageBtn"
+                type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target=".bd-example-modal-sm"
+              >
+                Send Message
+              </button>
+
+              <div
+                class="modal fade bd-example-modal-sm"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="mySmallModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content bg-success">
+                    <p class="my-auto">Your message has been sent!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-1"></div>
+      </div>
+    </section>
 
     <!-- Local scripts -->
-    <script src="scripts/app.js" defer></script>
+    <script src="scripts/support.js" defer></script>
 
     <!-- Bootstrap 4 scripts -->
 
