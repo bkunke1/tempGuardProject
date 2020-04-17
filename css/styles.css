@@ -290,39 +290,47 @@ textarea.edit-background-change {
   color: black;
   font-size: small;
   position: relative;
-  top: -222px;
+  top: -225px;
   left: -20px;
 }
 
 .tempScaleNumberMaxAlarm {
-    color: black;
+  color: black;
   font-size: small;
   position: relative;
-  top: -198px;
+  top: -200px;
   left: -20px;
 }
 
 .tempScaleMarkerZero {
-    color: black;
-    font-size: small;
-    position: relative;
-    top: -165px;
-    left: -20px;
-  }
-  
-.tempScaleNumberMinAlarm {
-    color: black;
+  color: black;
   font-size: small;
   position: relative;
-  top: -139px;
+  top: -170px;
+  left: -20px;
+}
+
+.tempScaleNumberMinAlarm {
+  color: black;
+  font-size: small;
+  position: relative;
+  top: -142px;
   left: -20px;
 }
 
 .tempScaleNumberMin {
-    color: black;
-    font-size: small;
-    position: relative;
-    top: -110px;
-    left: -20px;
-  }
+  color: black;
+  font-size: small;
+  position: relative;
+  top: -114px;
+  left: -20px;
+}
 
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+#tutorial-bg {
+  background-image: url(/images/tutorial-bg.png;)
+}

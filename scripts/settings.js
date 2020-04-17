@@ -73,7 +73,7 @@ const defaultUserProfile = {
   email: 'brandon.lloyd.kunkel@gmail.com',
   receiveEmail: 'on',
   userPhone: '407-698-6113',
-  receiveText: 'on'
+  receiveText: 'on',
 };
 
 // Initializing/Loading sesstionStorage data if present
@@ -198,20 +198,22 @@ const confirmAddUser = () => {
   const newTdForTable5 = document.getElementById(
     `user1TextAlert?${newUserIndex}`
   );
+  const newValidEmail = validateEmail(userEmail);
 
-  if (userName && userEmail && receiveEmail && userPhone && receiveText) {
+  const validEmail = validateEmail(userEmail);
+  if (userName && userEmail && receiveEmail && newValidEmail && userPhone && receiveText) {
     newTdForTable1.parentElement.innerText = userName;
     newTdForTable2.parentElement.innerText = userEmail;
     newTdForTable4.parentElement.innerText = userPhone;
 
-    const addUserProfileToList = index => {
+    const addUserProfileToList = (index) => {
       const addedUserProfile = {
         userIndex: index,
         userName: userName,
         email: userEmail,
         receiveEmail: 'on',
         userPhone: userPhone,
-        receiveText: 'on'
+        receiveText: 'on',
       };
 
       userProfiles.push(addedUserProfile);
@@ -231,19 +233,19 @@ const confirmAddUser = () => {
     settingsAddNewUserBtn.style.display = 'inline';
     settingsConfirmNewUserBtn.style.display = 'none';
   } else {
-    alert('Please fill in all fields to create a new user profile!');
+    alert('Please fill in all fields and a valid email address to create a new user profile!');
   }
   disableEditUserBtn();
 };
 
 // Fucntion for disabling the edit user button if there are no user exists
 const disableEditUserBtn = () => {
-    if (JSON.parse(sessionStorage.getItem('userProfileList')).length < 1) {
-        document.getElementById('settingsEditUsers').disabled = true;
-      } else {
-        document.getElementById('settingsEditUsers').disabled = false;
-      }
-}
+  if (JSON.parse(sessionStorage.getItem('userProfileList')).length < 1) {
+    document.getElementById('settingsEditUsers').disabled = true;
+  } else {
+    document.getElementById('settingsEditUsers').disabled = false;
+  }
+};
 
 // Function for saving temp scale prefernce to sessionStorage
 const savePreferences = () => {
@@ -298,6 +300,12 @@ const modifyDropMenu = () => {
   }
 };
 
+//Regex Function for validating email input
+function validateEmail(elementValue) {
+  var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailPattern.test(elementValue);
+}
+
 // Function for saving changes made to users in the edit user profile modal
 const saveEditUserProfiles = () => {
   const userID = document.getElementById('userIDEditUserSelect').options
@@ -306,16 +314,23 @@ const saveEditUserProfiles = () => {
   const newUserEmail = document.getElementById('newEmaileditUser').value;
   const newUserPhone = document.getElementById('newPhoneEditUser').value;
   const Users = JSON.parse(sessionStorage.getItem('userProfileList'));
-  if (newUserName && newUserEmail && newUserPhone) {
-    Users[userID].userName = newUserName;
-    Users[userID].email = newUserEmail;
-    Users[userID].userPhone = newUserPhone;
-    sessionStorage.setItem('userProfileList', JSON.stringify(Users));
+  const validEmail = validateEmail(newUserEmail);
+  if (!validEmail) {
+    alert('Please enter a valid email address');
     $('#userIDEditUserSelectModal').modal('toggle');
-    location.reload();
+    return;
   } else {
-    alert('Please fill in all fields!');
-    $('#userIDEditUserSelectModal').modal('toggle');
+    if (newUserName && newUserEmail && newUserPhone) {
+      Users[userID].userName = newUserName;
+      Users[userID].email = newUserEmail;
+      Users[userID].userPhone = newUserPhone;
+      sessionStorage.setItem('userProfileList', JSON.stringify(Users));
+      $('#userIDEditUserSelectModal').modal('toggle');
+      location.reload();
+    } else {
+      alert('Please fill in all fields!');
+      $('#userIDEditUserSelectModal').modal('toggle');
+    }
   }
 };
 
@@ -324,7 +339,7 @@ const deleteUser = () => {
   const userID = +document.getElementById('userIDEditUserSelect')
     .firstElementChild.innerText;
   let usersListHelper = JSON.parse(sessionStorage.getItem('userProfileList'));
-  usersListHelper = usersListHelper.filter(user => user.userIndex !== userID);
+  usersListHelper = usersListHelper.filter((user) => user.userIndex !== userID);
   for (user of usersListHelper) {
     if (user.userIndex > userID) {
       user.userIndex -= 1;

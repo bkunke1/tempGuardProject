@@ -6,6 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Settings</title>
 
+    <!-- AMCHARTS -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
+    <script src="https://www.amcharts.com/lib/4/lang/de_DE.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/germanyLow.js"></script>
+    
+
     <!-- Bootstrap link -->
     <link
       rel="stylesheet"
@@ -22,54 +30,94 @@
 
     <!-- Local CSS -->
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    
+    <!-- Local scripts -->
+    <script src="scripts/history.js" defer></script>
+
   </head>
 
   <body>
-
     <section id="navbar">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-          <a class="navbar-brand" href="#"
-            ><i class="fas fa-shield-alt"></i> TempGuard</a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-              <li class="nav-item active mx-auto">
-                <a class="nav-link" href="dashboard.html"
-                  >Dashboard<span class="sr-only">(current)</span></a
-                >
-              </li>
-              <li class="nav-item mx-auto">
-                <a class="nav-link" href="history.html">History</a>
-              </li>
-              <li class="nav-item mx-auto">
-                <a class="nav-link" href="settings.html">Settings</a>
-              </li>
-              <li class="nav-item mx-auto">
-                <a class="nav-link" href="manual.html">Manual</a>
-              </li>
-              <li class="nav-item mx-auto">
-                <a class="nav-link" href="support.html">Support</a>
-              </li>
-            </ul>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"
+          ><i class="fas fa-shield-alt"></i> TempGuard</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="dashboard.html"
+                >Dashboard<span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item active mx-auto">
+              <a class="nav-link" href="history.html">History</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="settings.html">Settings</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="support.html">Support</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+
+    <section id="sensor-selection-area">
+      <div class="container">
+        <div class="row border-bottom">
+          <div class="col-md text-center">
+            <h1>Historical Data Report</h1>
           </div>
-        </nav>
-      </section>
+          <div class="col-md-6 mx-auto my-auto">
+            <div class="input-group">
+              <select id="sensor-selection-options" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                <option selected>Choose a sensor...</option>                
+              </select>
+              <div class="input-group-append">
+                <button id="renderChartBtn" class="btn btn-outline-secondary" type="button">Display Report</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md text-center mt-4">
+            <h6 id="chartSensorName"></h6>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <h1>history page</h1>
+    <section id="chartArea">
+      <div id="chart-section" class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div id="chartdiv"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Local scripts -->
-    <script src="scripts/app.js" defer></script>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto text-center pt-1 mb-3">
+          <i class="fas fa-shield-alt"></i> TempGuard
+        </div>
+      </div>
+    </div>
+
+    
 
     <!-- Bootstrap 4 scripts -->
 
@@ -88,5 +136,7 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+
+    
   </body>
 </html>
