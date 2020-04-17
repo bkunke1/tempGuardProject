@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const sendMessageBtn = document.getElementById('sendMessageBtn');
 
 sendMessageBtn.addEventListener('click', sendMessage);
@@ -9,10 +10,8 @@ function sendMessage() {
     const emailAddress = document.getElementById('supportRequestFormEmail');
     const messageContent = document.getElementById('supportRequestFormMessage');
     if (firstName.value && lastName.value && emailAddress.value && messageContent.value) {
-        console.log('success');
-        $('#messageSuccessModal').modal('toggle')        
+        $('#messageSuccessModal').modal('toggle');
     } else {
-        console.log('fail');
-        $('#messageFailModal').modal('toggle')
+        $('#messageFailModal').modal('toggle');
     }
 }

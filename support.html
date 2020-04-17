@@ -150,12 +150,6 @@
               ></textarea>
             </div>
             <div class="text-center mb-4">
-              <!-- <input
-                id="sendMessageBtn"
-                class="btn btn-info"
-                type="button"
-                value="Send Message"
-              /> -->
               <button id="sendMessageBtn" type="button" class="btn btn-primary">
                 Send Message
               </button>
@@ -167,7 +161,15 @@
                 role="dialog"
                 aria-labelledby="mySmallModalLabel"
                 aria-hidden="true"
-              ></div>
+              >
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                  <div class="modal-content bg-success">
+                    <p class="my-auto text-dark">
+                      Message sent!
+                    </p>
+                  </div>
+                </div>
+              </div>
               <div
                 id="messageFailModal"
                 class="modal fade bd-example-modal-sm"

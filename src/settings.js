@@ -1,3 +1,5 @@
+/* eslint-disable no-magic-numbers */
+/* eslint-disable sort-keys */
 // Shortcuts for button listeners below
 const settingsEditCompanyInfoBtn = document.getElementById(
   'settingsEditCompanyInfo'
@@ -63,7 +65,6 @@ const loadSavedCompanyData = () => {
 let userProfiles = [];
 
 // Shortcuts for button handlers used below
-const settingsUserTable = document.getElementById('settings-userTableMain');
 const settingsAddNewUserBtn = document.getElementById('settingsAddNewUser');
 
 // Initial data in user profile table
@@ -131,8 +132,7 @@ const editAddUser = () => {
 // Function for rendering user profile table from sessionStorage userProfileList obj on page load.
 const renderUsers = () => {
   const storedUserList = JSON.parse(sessionStorage.getItem('userProfileList'));
-  for (user of storedUserList) {
-    console.log(user.userName);
+  for (const user of storedUserList) {
     //     // Defining constants
     const newRowForTable = document.createElement('tr');
     const newThForTable = document.createElement('th');
@@ -189,18 +189,10 @@ const confirmAddUser = () => {
   const newTdForTable2 = document.getElementById(
     `settingsAddEmailInput${newUserIndex}`
   );
-  const newTdForTable3 = document.getElementById(
-    `user1EmailAlert?${newUserIndex}`
-  );
   const newTdForTable4 = document.getElementById(
     `settingsAddPhoneInput${newUserIndex}`
   );
-  const newTdForTable5 = document.getElementById(
-    `user1TextAlert?${newUserIndex}`
-  );
   const newValidEmail = validateEmail(userEmail);
-
-  const validEmail = validateEmail(userEmail);
   if (userName && userEmail && receiveEmail && newValidEmail && userPhone && receiveText) {
     newTdForTable1.parentElement.innerText = userName;
     newTdForTable2.parentElement.innerText = userEmail;
@@ -209,10 +201,10 @@ const confirmAddUser = () => {
     const addUserProfileToList = (index) => {
       const addedUserProfile = {
         userIndex: index,
-        userName: userName,
+        userName,
         email: userEmail,
         receiveEmail: 'on',
-        userPhone: userPhone,
+        userPhone,
         receiveText: 'on',
       };
 
@@ -226,9 +218,6 @@ const confirmAddUser = () => {
     };
 
     saveUserProfilesForSession();
-
-    console.log('userProfiles', userProfiles);
-    console.log('session storage', sessionStorage.getItem('userProfileList'));
 
     settingsAddNewUserBtn.style.display = 'inline';
     settingsConfirmNewUserBtn.style.display = 'none';
@@ -252,19 +241,15 @@ const savePreferences = () => {
   const fTempSelection = document.getElementById('customRadioInline1');
   const cTempSelection = document.getElementById('customRadioInline2');
   if (sessionStorage.getItem('tempScaleSelection') === 'null') {
-    console.log('no existing temp pref');
-
     return;
   } else if (fTempSelection.checked === true) {
-    console.log('saving f as pref');
     sessionStorage.setItem('tempScaleSelection', 'F');
-    console.log(sessionStorage.getItem('tempScaleSelection'));
-    (fTempSelection.checked = true), (cTempSelection.checked = false);
+    fTempSelection.checked = true;
+    cTempSelection.checked = false;
   } else {
-    console.log('saving c as pref');
     sessionStorage.setItem('tempScaleSelection', 'C');
-    console.log(sessionStorage.getItem('tempScaleSelection'));
-    (fTempSelection.checked = false), (cTempSelection.checked = true);
+    fTempSelection.checked = false;
+    cTempSelection.checked = true;
   }
 };
 
@@ -278,9 +263,11 @@ const loadSavedPreferences = () => {
   } else {
     const selector = sessionStorage.getItem('tempScaleSelection');
     if (selector === 'F') {
-      (fTempSelection.checked = true), (cTempSelection.checked = false);
+      fTempSelection.checked = true;
+      cTempSelection.checked = false;
     } else {
-      (fTempSelection.checked = false), (cTempSelection.checked = true);
+      fTempSelection.checked = false;
+    cTempSelection.checked = true;
     }
   }
 };
@@ -300,9 +287,10 @@ const modifyDropMenu = () => {
   }
 };
 
-//Regex Function for validating email input
+// Regex Function for validating email input
 function validateEmail(elementValue) {
-  var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  // eslint-disable-next-line require-unicode-regexp
+  let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailPattern.test(elementValue);
 }
 
@@ -315,8 +303,10 @@ const saveEditUserProfiles = () => {
   const newUserPhone = document.getElementById('newPhoneEditUser').value;
   const Users = JSON.parse(sessionStorage.getItem('userProfileList'));
   const validEmail = validateEmail(newUserEmail);
+  // eslint-disable-next-line no-negated-condition
   if (!validEmail) {
     alert('Please enter a valid email address');
+    // eslint-disable-next-line no-undef
     $('#userIDEditUserSelectModal').modal('toggle');
     return;
   } else {
@@ -325,10 +315,12 @@ const saveEditUserProfiles = () => {
       Users[userID].email = newUserEmail;
       Users[userID].userPhone = newUserPhone;
       sessionStorage.setItem('userProfileList', JSON.stringify(Users));
+      // eslint-disable-next-line no-undef
       $('#userIDEditUserSelectModal').modal('toggle');
       location.reload();
     } else {
       alert('Please fill in all fields!');
+      // eslint-disable-next-line no-undef
       $('#userIDEditUserSelectModal').modal('toggle');
     }
   }
@@ -340,13 +332,12 @@ const deleteUser = () => {
     .firstElementChild.innerText;
   let usersListHelper = JSON.parse(sessionStorage.getItem('userProfileList'));
   usersListHelper = usersListHelper.filter((user) => user.userIndex !== userID);
-  for (user of usersListHelper) {
+  for (const user of usersListHelper) {
     if (user.userIndex > userID) {
       user.userIndex -= 1;
     }
   }
   sessionStorage.setItem('userProfileList', JSON.stringify(usersListHelper));
-  console.log(usersListHelper);
   location.reload();
 };
 

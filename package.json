@@ -4,7 +4,8 @@
   "description": "One Paragraph of project description goes here",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/bkunke1/tempGuardProject/issues"
   },
-  "homepage": "https://github.com/bkunke1/tempGuardProject#readme"
+  "homepage": "https://github.com/bkunke1/tempGuardProject#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
 }

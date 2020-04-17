@@ -1,0 +1,336 @@
+/* Bootstrap */
+
+.row {
+  background: #f8f9fa;
+  margin-top: 20px;
+}
+
+.col {
+  border: solid 1px #6c757d;
+  padding: 10px;
+}
+
+/* Body */
+
+.background {
+  background-image: url(/images/background.png);
+}
+
+.support-background {
+  background-image: url(/images/support3-bg.png);
+}
+
+.transparent-bg {
+  background-color: transparent;
+}
+
+.bg {
+  /* The image used */
+  background-image: url(/images/support3-bg.png);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Nav Section */
+
+.nav-link {
+  font-size: 1.5rem;
+}
+
+.brand-text {
+  font-family: 'Kanit', sans-serif;
+  font-size: 2rem;
+}
+
+.network-mock {
+  font-size: 6rem;
+  padding-left: 25%;
+}
+
+/* Features */
+
+.feature-mainTitle {
+  padding-top: 25%;
+  padding-bottom: 2%;
+  font-weight: 900;
+  font-size: 2.5rem;
+}
+
+.feature-titles {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.feature-icon {
+  font-size: 3rem;
+  padding-bottom: 20px;
+}
+
+/* Testimonials */
+
+#testimonials {
+  background-color: #153aec;
+  margin-top: 100px;
+  padding: 100px 0;
+}
+
+.carousel-item {
+  padding: 2% 15%;
+}
+
+.testimonial-title {
+  font-size: 3rem;
+}
+
+/* Pricing */
+
+.pricing-title {
+  padding: 50px 0;
+  font-size: 3rem;
+}
+
+.pricing-text {
+  font-size: 2.5rem;
+  color: #153aec;
+  font-weight: 700;
+}
+
+.card {
+  box-shadow: 3px 4px 19px 7px rgba(0, 0, 0, 0.75);
+}
+
+/* Call to Action Section */
+
+#cta {
+  background-color: #153aec;
+  margin-top: 100px;
+  padding: 100px 0;
+}
+
+/* Footer */
+
+#footer {
+  height: 100px;
+}
+
+.footer-icon {
+  color: #153aec;
+  font-size: 2rem;
+  padding: 2% 3%;
+}
+
+.manual-title {
+  color: #051770;
+}
+
+.backtotop {
+  text-align: center;
+}
+
+/* Simulation */
+
+.banner {
+  text-align: center;
+}
+
+.sensorbg {
+  background-color: green;
+}
+
+.buttonpadd {
+  margin-left: 30%;
+  margin-top: 15%;
+}
+
+#lgplus {
+  font-weight: 900;
+}
+
+.thermfloat {
+  float: right;
+  padding-left: 2rem;
+}
+
+/* Dashboard */
+
+.outline {
+  outline: 2px solid red;
+}
+
+.sensorbox {
+  padding: 1.75rem;
+  outline: black solid 0.3rem;
+  background-color: lightgray;
+}
+
+.temp-gauge {
+  padding-top: 0.5rem;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.cf-selector {
+  display: inline-block;
+}
+
+#sensor4 {
+  display: none;
+}
+
+.inactive-box {
+  display: none;
+}
+
+.alarm-mode-bg {
+  /* color: #fff;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 5px; */
+  animation: blinkingBackground 2s infinite;
+}
+@keyframes blinkingBackground {
+  0% {
+    background-color: lightgray;
+  }
+  33% {
+    background-color: #ef0a1a;
+  }
+  66% {
+    background-color: lightgray;
+  }
+  100% {
+    background-color: #ef0a1a;
+  }
+}
+
+/* Login Modal  */
+
+#loginModal {
+  background-color: rgb(36, 34, 34);
+}
+
+.centerbtn {
+  text-align: center !important;
+}
+
+.login-icon {
+  font-size: 4rem;
+  padding-top: 2rem;
+}
+
+/* Settings */
+
+input[type='text'].edit-background-change,
+textarea.edit-background-change {
+  background-color: lime;
+}
+
+/* Support Page */
+
+.supportText {
+  color: rgb(25, 201, 255);
+}
+
+#assisstanceText {
+  font-family: 'arial black';
+}
+
+@media (max-width: 375) {
+  div#testquery {
+    color: white;
+    padding-right: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  div#testquery {
+    color: white;
+    padding-right: 60%;
+  }
+}
+@media (max-width: 800px) {
+  div#testquery {
+    color: white;
+    padding-right: 50%;
+  }
+}
+@media (max-width: 600px) {
+  div#testquery {
+    color: white;
+    padding-right: 35%;
+  }
+}
+@media (max-width: 375px) {
+  div#testquery {
+    color: white;
+    padding-right: 10%;
+    padding-left: 10%;
+  }
+}
+
+@media (max-width: 800px) {
+  #btnPadding {
+    padding-bottom: 10%;
+  }
+}
+
+.tempScaleNumberMax {
+  color: black;
+  font-size: small;
+  position: relative;
+  top: -225px;
+  left: -20px;
+}
+
+.tempScaleNumberMaxAlarm {
+  color: black;
+  font-size: small;
+  position: relative;
+  top: -200px;
+  left: -20px;
+}
+
+.tempScaleMarkerZero {
+  color: black;
+  font-size: small;
+  position: relative;
+  top: -170px;
+  left: -20px;
+}
+
+.tempScaleNumberMinAlarm {
+  color: black;
+  font-size: small;
+  position: relative;
+  top: -142px;
+  left: -20px;
+}
+
+.tempScaleNumberMin {
+  color: black;
+  font-size: small;
+  position: relative;
+  top: -114px;
+  left: -20px;
+}
+
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+#tutorial-bg {
+  background-image: url(/images/tutorial-bg.png;)
+}

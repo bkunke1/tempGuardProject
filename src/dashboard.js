@@ -1,3 +1,5 @@
+/* eslint-disable no-magic-numbers */
+/* eslint-disable no-undef */
 // Constants & Variable Instantiation//
 const ALARM = 'Alarm!';
 const NORMAL = 'Normal';
@@ -7,22 +9,14 @@ const ACTIVE = 'Active';
 const UP = 'UP';
 const DOWN = 'DOWN';
 let degreeSelected = DEGREE_F;
-let tempPadding = 10;
-let markingFreq = 2;
-let updateTemp;
-let userName;
 let tempSimulationStatus = 'INACTIVE';
 let sensorList = [];
+let tempUpdateFrequency = 1500;
 
 // Declaring Elements
-const loginBtn = document.getElementById('login-btn');
-const testBtn = document.getElementById('test-btn');
 const dashAddSensorBtn = document.getElementById('dashAddSensorModalUpdateBtn');
-const dashAddSensorModalCloseBtn = document.getElementById(
-  'dashAddSensorModalCloseBtn'
-);
-const loginModalLoginBtn = document.getElementById('loginModalLoginBtn');
 const simTempsBtn = document.getElementById('simTempBtn');
+// eslint-disable-next-line no-unused-vars
 const stopTempFeedBtn = document.getElementById('stopTempFeedBtn');
 const dashEditSensorModalUpdate = document.getElementById(
   'dashEditSensorModalUpdateBtn'
@@ -42,8 +36,8 @@ class Sensor {
     currentTemp,
     highAlarm,
     lowAlarm,
-    rangeMax = 100,
-    rangeMin = -100
+    rangeMax,
+    rangeMin
   ) {
     this.id = sensorList.length + 1;
     this.name = name;
@@ -55,7 +49,7 @@ class Sensor {
     this.rangeMax = rangeMax;
     this.rangeMin = rangeMin;
     this.range = rangeMax - rangeMin;
-    this.simTempDirection = 'UP';
+    this.simTempDirection = UP;
     this.tempRecords = [];
   }
 }
@@ -78,12 +72,6 @@ const updateAlarmStatus = (obj, i) => {
 
 // updates degree symbol to F or C based on preferences saved
 const updateDegreeSymbolSelection = () => {
-  // if (sessionStorage.getItem('tempScaleSelection')) {
-  //   degreeSelected = sessionStorage.getItem('tempScaleSelection');
-  // }
-  // degreeSelected = sessionStorage.getItem('tempScaleSelection')
-  //   ? sessionStorage.getItem('tempScaleSelection')
-  //   : degreeSelected;
   if (sessionStorage.getItem('tempScaleSelection')) {
     if (sessionStorage.getItem('tempScaleSelection') === 'F') {
       degreeSelected = DEGREE_F;
@@ -96,7 +84,7 @@ const updateDegreeSymbolSelection = () => {
 };
 
 // turns add sensor button on or off
-const toggleDisableAddSensorBtn = (length) => {
+const toggleDisableAddSensorBtn = () => {
   if (sensorList.length > 5) {
     document.getElementById('dashAddSensBtn').classList.add('disabled');
     document.getElementById('dashAddSensBtn').setAttribute('data-toggle', '');
@@ -260,6 +248,7 @@ const addSensor = () => {
         range
       );
       sensorList.push(sensor);
+      // eslint-disable-next-line no-undef
       $('#dashAddSensorModal').modal('toggle');
       updateTempMarkings(
         sensor.id,
@@ -272,59 +261,38 @@ const addSensor = () => {
       updateDOM(sensorList.length);
       toggleDisableAddSensorBtn(sensorList.length);
       // toggleDisablesimulateTempsBtn(sensorList.length);
-      const min = +setupLowAlarm - 5;
-      const max = +setupHighAlarm + 5;
-      const init = +setupCurrentTemp;
-      const length = (+setupHighAlarm - +setupLowAlarm) * 10;
     } else {
       alert('Please fill all of the fields in order to update.');
     }
   }
 };
 
-// validates login modal input
-const authLogin = () => {
-  userName = document.getElementById('loginInputUsername').value;
-  const pass = document.getElementById('loginInputPassword').value;
-
-  if (userName === 'admin' && pass === '1234') {
-    $('#loginModal').modal('toggle');
-  } else alert('Invalid Username or Password');
-};
-
-// launches login modal
-const loginLauncher = () => {
-  $('#loginModal').modal('toggle');
-};
-
-// loginLauncher();
-// **Remove comment to activate a login modal
-
 // updates all sensors to next simulation temperature and updates text data
 function nextTemp() {
+  const thermometerPadding = 5;
   for (let i = 0; i < sensorList.length; i++) {
     sensorList[i].tempRecords.push({
       date: new Date(),
       temp: sensorList[i].currentTemp,
     });
     if (
-      sensorList[i].simTempDirection === 'UP' &&
-      sensorList[i].currentTemp < +sensorList[i].highAlarm + 5
+      sensorList[i].simTempDirection === UP &&
+      sensorList[i].currentTemp < +sensorList[i].highAlarm + thermometerPadding
     ) {
       ++sensorList[i].currentTemp;
     } else if (
-      sensorList[i].simTempDirection === 'UP' &&
-      sensorList[i].currentTemp >= +sensorList[i].highAlarm + 5
+      sensorList[i].simTempDirection === UP &&
+      sensorList[i].currentTemp >= +sensorList[i].highAlarm + thermometerPadding
     ) {
-      sensorList[i].simTempDirection = 'DOWN';
+      sensorList[i].simTempDirection = DOWN;
       --sensorList[i].currentTemp;
     } else if (
-      sensorList[i].simTempDirection === 'DOWN' &&
-      sensorList[i].currentTemp > +sensorList[i].lowAlarm - 5
+      sensorList[i].simTempDirection === DOWN &&
+      sensorList[i].currentTemp > +sensorList[i].lowAlarm - thermometerPadding
     ) {
       --sensorList[i].currentTemp;
     } else {
-      sensorList[i].simTempDirection = 'UP';
+      sensorList[i].simTempDirection = UP;
       ++sensorList[i].currentTemp;
     }
     updateTempBar(sensorList[i], i);
@@ -340,20 +308,25 @@ function nextTemp() {
 // launches temperature simulation making the temperatures rise and fall
 function simulateTempsFeed() {
   if (tempSimulationStatus === 'INACTIVE') {
-    tempUpdateActive = setInterval(nextTemp, 1500);
+    // eslint-disable-next-line no-undef
+    tempUpdateActive = setInterval(nextTemp, tempUpdateFrequency);
   }
 }
 
 // stops the temperature simulation
+// eslint-disable-next-line no-unused-vars
 function stopTempSimulation() {
   if (simTempsBtn.classList.contains('disabled')) {
     return;
   } else {
     try {
+      // eslint-disable-next-line no-undef
       clearInterval(tempUpdateActive);
+      // eslint-disable-next-line no-undef
       if ((tempUpdateActive = undefined))
         throw 'Temp simulation not currently active';
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err, 'Temp simulation is not currently active');
     }
   }
@@ -361,7 +334,9 @@ function stopTempSimulation() {
 }
 
 // runs temperature simulation if the process isnt not already running
+// eslint-disable-next-line no-unused-vars
 const activateTempSimulation = () => {
+  // eslint-disable-next-line no-unused-vars
   let status = 'inactive';
   if (simTempsBtn.classList.contains('disabled')) {
     return;
@@ -371,45 +346,9 @@ const activateTempSimulation = () => {
   }
 };
 
-// generates some sample temperature records for sensor0
-function generateTempRecords() {
-  let sampleTempRecords = [];
-  const max = 60;
-  const min = 30;
-  let direction = UP;
-  let genTemp = 50;
-  let genDate = new Date();
-  function newNumber() {
-    if (direction === UP && genTemp < max) {
-      genTemp = ++genTemp;
-    } else if (direction === UP) {
-      direction = DOWN;
-      --genTemp;
-    } else if (direction === DOWN && genTemp > min) {
-      genTemp = --genTemp;
-    } else {
-      direction = UP;
-      gentemp = ++genTemp;
-    }
-    return genTemp;
-  }
-  function newTime(i) {
-    const updateTime = new Date();
-    updateTimeHelper = updateTime.getSeconds() - i;
-    updateTime.setSeconds(updateTimeHelper);
-    return updateTime;
-  }
-  for (let i = 0; i < 300; i++) {
-    sampleTempRecords.push({
-      date: newTime(i),
-      temp: newNumber(),
-    });
-  }
-  return sampleTempRecords;
-}
-
 // updates modal after opening
 function updateEditSensorForm() {
+  // eslint-disable-next-line no-undef
   $('#dashEditSensorModal').on('show.bs.modal', function () {
     updateEditSensorFormHelper(event);
   });
@@ -418,7 +357,6 @@ function updateEditSensorForm() {
 // helps update modal input fields with existing data when editing sensors
 function updateEditSensorFormHelper(event) {
   const id = event.target.offsetParent.getAttribute('id').slice(1, 2);
-  const sensorID = id;
   const sensor = sensorList[id];
   const NameInput = document.getElementById('editSensorName1');
   const HighAlarmInput = document.getElementById('editHighAlarm1');
@@ -451,10 +389,6 @@ const EditSensorModalUpdateBtn = () => {
   const editRangeMin = document.getElementById('editRangeMin1');
   const editCurrentTemp = document.getElementById('editTemp');
   const editRange = editRangeMax.value - editRangeMin.value;
-  const min = +editLowAlarm.value - 5;
-  const max = +editHighAlarm.value + 5;
-  const init = +editCurrentTemp.value;
-  const length = (+editHighAlarm.value - +editLowAlarm.value) * 10;
   if (
     editName.value &&
     editHighAlarm.value &&
@@ -486,16 +420,20 @@ const EditSensorModalUpdateBtn = () => {
       +editRange
     );
     updateDOM(modalID);
+    // eslint-disable-next-line no-undef
     $('#dashEditSensorModal').modal('toggle');
   }
 };
 
 // Function to clear form fields for the add sensor modal after closing
+// eslint-disable-next-line no-undef
 $.clearFormFields = function (area) {
+  // eslint-disable-next-line no-undef
   $(area).find('input[type=text').val('');
 };
 
 // Function to rename the editSensorModal divID back to original state
+// eslint-disable-next-line no-undef
 $('#dashEditSensorModal').on('hidden.bs.modal', function () {
   document
     .getElementById('editSensorName1')
@@ -557,7 +495,6 @@ const deleteSensor = () => {
     .slice(-1);
   sensorList.splice(id, 1);
   for (let i = id; i < sensorList.length + 1; i++) {
-    const sensor = sensorList[i];
     rebuildSensorList(i);
     removeOldSensors(i);
   }
@@ -578,11 +515,11 @@ function init() {
     sensorList = JSON.parse(sessionStorage.getItem('sensorList'));
     updateDOM();
     for (let i = 0; i < sensorList.length + 1; i++) {
-      const sensor = sensorList[i];
       rebuildSensorList(i);
     }
     // toggleDisablesimulateTempsBtn(sensorList.length);
   }
+  // eslint-disable-next-line no-empty
   if (sensorList === []) {
   } else {
     simulateTempsFeed();
@@ -595,7 +532,6 @@ function init() {
 
 // Event Listeners
 dashAddSensorBtn.addEventListener('click', addSensor);
-loginModalLoginBtn.addEventListener('click', authLogin);
 // simTempsBtn.addEventListener('click', activateTempSimulation); // working feature, currently removed for ease of use
 // stopTempFeedBtn.addEventListener('click', stopTempSimulation); // working feature, currently removed for ease of use
 dashEditSensorModalUpdate.addEventListener('click', EditSensorModalUpdateBtn);
@@ -612,7 +548,6 @@ if (sessionStorage.getItem('sensorList')) {
   sensorList = JSON.parse(sessionStorage.getItem('sensorList'));
 } else {
   sensorList[0] = new Sensor('Cooler 1', 45, 55, 35, 65, 25);
-  // sensorList[0].tempRecords = generateTempRecords();
   sensorList[1] = new Sensor('Freezer 1', -5, 32, -30, 40, -40);
   sensorList[2] = new Sensor('Dry Storage', 75, 90, 32, 100, 0);
   sessionStorage.setItem('sensorList', JSON.stringify(sensorList));
@@ -620,4 +555,5 @@ if (sessionStorage.getItem('sensorList')) {
 
 init();
 
+// eslint-disable-next-line no-console
 console.log('Thank you for taking the time to look at my project!');

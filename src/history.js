@@ -1,3 +1,5 @@
+/* eslint-disable no-magic-numbers */
+/* eslint-disable no-undef */
 // Constants & Variable Instantiation//
 const sensorListData = JSON.parse(sessionStorage.getItem('sensorList'));
 const sensorListTempRecords = [];
@@ -22,15 +24,15 @@ function updateChartName(sensorID = 0) {
   const chartSensorName = document.getElementById('chartSensorName');
   if (sensorListData.length > 0) {
     chartSensorName.innerText = sensorListData[sensorID].name;
-  } else chartSensorName.innerText = "Currently no sensor exists. Please create one to view this chart!";
-};
+  } else chartSensorName.innerText = 'Currently no sensor exists. Please create one to view this chart!';
+}
 updateChartName();
 
 // updates dropdown menu with sensor options
 function addSelectionOptions() {
   const insertionPoint = document.getElementById('sensor-selection-options');
-  for (sensor of sensorListData) {
-    sensorIndex = sensor.id - 1;
+  for (const sensor of sensorListData) {
+    const sensorIndex = sensor.id - 1;
     const newOption = document.createElement('option');
     newOption.innerText = sensor.name;
     newOption.setAttribute('value', sensorIndex);
@@ -47,29 +49,31 @@ function renderChart() {
 }
 
 // if chart data exists, renders the first sensor chart
+// eslint-disable-next-line no-empty
 if (sensorListTempRecords[0].length === 0) {
 } else makeChart(0);
 
 // am4core code - builds chart
 function makeChart(sensorID) {
   // Pulling data from selected sensor
-  const tempRecords = sensorListData[sensorID].tempRecords;
+  const {tempRecords} = sensorListData[sensorID];
 
   // Create chart instance
-  var chart = am4core.create('chartdiv', am4charts.XYChart);
+  let chart = am4core.create('chartdiv', am4charts.XYChart);
 
   // Add data
   // chart.data = generateChartData();
   chart.data = tempRecords;
 
   // Create axes
-  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
   dateAxis.renderer.minGridDistance = 50;
 
-  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+  // eslint-disable-next-line no-unused-vars
+  let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
   // Create series
-  var series = chart.series.push(new am4charts.LineSeries());
+  let series = chart.series.push(new am4charts.LineSeries());
   series.dataFields.valueY = 'temp';
   series.dataFields.dateX = 'date';
   series.strokeWidth = 2;
