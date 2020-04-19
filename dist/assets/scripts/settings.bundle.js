@@ -1,0 +1,100 @@
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/settings.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/settings.js":
+/*!*************************!*\
+  !*** ./src/settings.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("/* eslint-disable no-magic-numbers */\r\n/* eslint-disable sort-keys */\r\n// Shortcuts for button listeners below\r\nconst settingsEditCompanyInfoBtn = document.getElementById(\r\n  'settingsEditCompanyInfo'\r\n);\r\nconst settingsSaveCompanyInfoBtn = document.getElementById(\r\n  'settingsSaveCompanyInfo'\r\n);\r\n\r\n// Function for editing company data fields\r\nconst editCompanyInfo = () => {\r\n  document.getElementById('company-info-toggle').disabled = false;\r\n  document.getElementById('companyName').focus();\r\n  document.getElementById('companyName').select();\r\n};\r\n\r\n// Button handler for edit company info section\r\nif (settingsEditCompanyInfoBtn) {\r\n  settingsEditCompanyInfoBtn.addEventListener('click', editCompanyInfo);\r\n}\r\n\r\n// Function for saving company info field values to sessionStorage\r\nconst saveCompanyInfo = () => {\r\n  let companyName = document.getElementById('companyName').value;\r\n  let address1 = document.getElementById('inputAddress').value;\r\n  let address2 = document.getElementById('inputAddress2').value;\r\n  let city = document.getElementById('inputCity').value;\r\n  let state = document.getElementById('inputState').value;\r\n  let zip = document.getElementById('inputZip').value;\r\n  sessionStorage.setItem('companyName', companyName);\r\n  sessionStorage.setItem('address1', address1);\r\n  sessionStorage.setItem('address2', address2);\r\n  sessionStorage.setItem('city', city);\r\n  sessionStorage.setItem('state', state);\r\n  sessionStorage.setItem('zip', zip);\r\n  document.getElementById('company-info-toggle').disabled = true;\r\n};\r\n\r\n// Button handler for saving edits made to company data fields\r\nif (settingsSaveCompanyInfoBtn) {\r\n  settingsSaveCompanyInfoBtn.addEventListener('click', saveCompanyInfo);\r\n}\r\n\r\n// Function for loading company info on page load if any data exists in sessionStorage\r\nconst loadSavedCompanyData = () => {\r\n  let companyName = document.getElementById('companyName');\r\n  let address1 = document.getElementById('inputAddress');\r\n  let address2 = document.getElementById('inputAddress2');\r\n  let city = document.getElementById('inputCity');\r\n  let state = document.getElementById('inputState');\r\n  let zip = document.getElementById('inputZip');\r\n  companyName.value = sessionStorage.getItem('companyName');\r\n  address1.value = sessionStorage.getItem('address1');\r\n  address2.value = sessionStorage.getItem('address2');\r\n  city.value = sessionStorage.getItem('city');\r\n  state.value = sessionStorage.getItem('state');\r\n  zip.value = sessionStorage.getItem('zip');\r\n};\r\n\r\n//\r\n// User Profiles on Settings Page\r\n//\r\n\r\nlet userProfiles = [];\r\n\r\n// Shortcuts for button handlers used below\r\nconst settingsAddNewUserBtn = document.getElementById('settingsAddNewUser');\r\n\r\n// Initial data in user profile table\r\nconst defaultUserProfile = {\r\n  userIndex: 1,\r\n  userName: 'Brandon',\r\n  email: 'brandon.lloyd.kunkel@gmail.com',\r\n  receiveEmail: 'on',\r\n  userPhone: '407-698-6113',\r\n  receiveText: 'on',\r\n};\r\n\r\n// Initializing/Loading sesstionStorage data if present\r\nif (sessionStorage.getItem('userProfileList')) {\r\n  userProfiles = JSON.parse(sessionStorage.getItem('userProfileList'));\r\n} else {\r\n  userProfiles.push(defaultUserProfile);\r\n  sessionStorage.setItem('userProfileList', JSON.stringify(userProfiles));\r\n}\r\n\r\n// const loadSavedUserProfiles = () => {\r\n//   renderUsers();\r\n// };\r\n\r\n// Creates a new row in the settingsUserProfilesTable\r\nconst editAddUser = () => {\r\n  // Defining constants\r\n  const newRowForTable = document.createElement('tr');\r\n  const newThForTable = document.createElement('th');\r\n  const newTdForTable1 = document.createElement('td');\r\n  const newTdForTable2 = document.createElement('td');\r\n  const newTdForTable3 = document.createElement('td');\r\n  const newTdForTable4 = document.createElement('td');\r\n  const newTdForTable5 = document.createElement('td');\r\n  const lastTableEntry = document.getElementById('settings-userTableLast');\r\n  const storedUserList = JSON.parse(sessionStorage.getItem('userProfileList'));\r\n  // Appending all nodes\r\n  lastTableEntry.insertAdjacentElement('beforebegin', newRowForTable);\r\n  newRowForTable.appendChild(newThForTable);\r\n  newRowForTable.appendChild(newTdForTable1);\r\n  newRowForTable.appendChild(newTdForTable2);\r\n  newRowForTable.appendChild(newTdForTable3);\r\n  newRowForTable.appendChild(newTdForTable4);\r\n  newRowForTable.appendChild(newTdForTable5);\r\n  // Setting attribues\r\n  newRowForTable.setAttribute(\r\n    'id',\r\n    `settings-userTable${++storedUserList.length}`\r\n  );\r\n  lastTableEntry.firstElementChild.innerText = storedUserList.length + 1;\r\n  newThForTable.setAttribute('scope', 'row');\r\n  newThForTable.innerText = storedUserList.length;\r\n  newTdForTable1.innerHTML = `<input id='settingsAddUserInput${+storedUserList.length}' size='15'/>`;\r\n  newTdForTable2.innerHTML = `<input id='settingsAddEmailInput${+storedUserList.length}' size='30'/>`;\r\n  newTdForTable3.innerHTML = `<input type='checkbox' checked id='user1EmailAlert?${+storedUserList.length}'/>`;\r\n  newTdForTable4.innerHTML = `<input id='settingsAddPhoneInput${+storedUserList.length}' size='12'/>`;\r\n  newTdForTable5.innerHTML = `<input type='checkbox' checked id='user1TextAlert?${+storedUserList.length}'/>`;\r\n  settingsAddNewUserBtn.style.display = 'none';\r\n  settingsConfirmNewUserBtn.style.display = 'inline';\r\n  document\r\n    .getElementById(`settingsAddUserInput${+storedUserList.length}`)\r\n    .focus();\r\n};\r\n\r\n// Function for rendering user profile table from sessionStorage userProfileList obj on page load.\r\nconst renderUsers = () => {\r\n  const storedUserList = JSON.parse(sessionStorage.getItem('userProfileList'));\r\n  for (const user of storedUserList) {\r\n    //     // Defining constants\r\n    const newRowForTable = document.createElement('tr');\r\n    const newThForTable = document.createElement('th');\r\n    const newTdForTable1 = document.createElement('td');\r\n    const newTdForTable2 = document.createElement('td');\r\n    const newTdForTable3 = document.createElement('td');\r\n    const newTdForTable4 = document.createElement('td');\r\n    const newTdForTable5 = document.createElement('td');\r\n    const lastTableEntry = document.getElementById('settings-userTableLast');\r\n    //     // Appending all nodes\r\n    lastTableEntry.insertAdjacentElement('beforebegin', newRowForTable);\r\n    newRowForTable.appendChild(newThForTable);\r\n    newRowForTable.appendChild(newTdForTable1);\r\n    newRowForTable.appendChild(newTdForTable2);\r\n    newRowForTable.appendChild(newTdForTable3);\r\n    newRowForTable.appendChild(newTdForTable4);\r\n    newRowForTable.appendChild(newTdForTable5);\r\n    //     // Setting attribues\r\n    newRowForTable.setAttribute('id', `settings-userTable${user.userIndex}`);\r\n    lastTableEntry.firstElementChild.innerText = storedUserList.length + 1;\r\n    newThForTable.setAttribute('scope', 'row');\r\n    newThForTable.innerText = user.userIndex;\r\n    newTdForTable1.innerText = user.userName;\r\n    newTdForTable2.innerText = user.email;\r\n    newTdForTable3.innerHTML = `<input type='checkbox' id='user1EmailAlert?${user.userIndex}'/>`;\r\n    newTdForTable4.innerText = user.userPhone;\r\n    newTdForTable5.innerHTML = `<input type='checkbox' id='user1TextAlert?${user.userIndex}'/>`;\r\n    document.getElementById(`user1EmailAlert?${user.userIndex}`).checked = true;\r\n    document.getElementById(`user1TextAlert?${user.userIndex}`).checked = true;\r\n  }\r\n  disableEditUserBtn();\r\n};\r\n\r\n// Function for saving user data when adding user to user profile table\r\nconst confirmAddUser = () => {\r\n  const storedUserList = JSON.parse(sessionStorage.getItem('userProfileList'));\r\n  const newUserIndex = ++storedUserList.length;\r\n  const userName = document.getElementById(\r\n    `settingsAddUserInput${newUserIndex}`\r\n  ).value;\r\n  const userEmail = document.getElementById(\r\n    `settingsAddEmailInput${newUserIndex}`\r\n  ).value;\r\n  let receiveEmail = document.getElementById(`user1EmailAlert?${newUserIndex}`)\r\n    .value;\r\n  const userPhone = document.getElementById(\r\n    `settingsAddPhoneInput${newUserIndex}`\r\n  ).value;\r\n  let receiveText = document.getElementById(`user1TextAlert?${newUserIndex}`)\r\n    .value;\r\n  const newTdForTable1 = document.getElementById(\r\n    `settingsAddUserInput${newUserIndex}`\r\n  );\r\n  const newTdForTable2 = document.getElementById(\r\n    `settingsAddEmailInput${newUserIndex}`\r\n  );\r\n  const newTdForTable4 = document.getElementById(\r\n    `settingsAddPhoneInput${newUserIndex}`\r\n  );\r\n  const newValidEmail = validateEmail(userEmail);\r\n  if (userName && userEmail && receiveEmail && newValidEmail && userPhone && receiveText) {\r\n    newTdForTable1.parentElement.innerText = userName;\r\n    newTdForTable2.parentElement.innerText = userEmail;\r\n    newTdForTable4.parentElement.innerText = userPhone;\r\n\r\n    const addUserProfileToList = (index) => {\r\n      const addedUserProfile = {\r\n        userIndex: index,\r\n        userName,\r\n        email: userEmail,\r\n        receiveEmail: 'on',\r\n        userPhone,\r\n        receiveText: 'on',\r\n      };\r\n\r\n      userProfiles.push(addedUserProfile);\r\n    };\r\n\r\n    addUserProfileToList(storedUserList.length);\r\n\r\n    const saveUserProfilesForSession = () => {\r\n      sessionStorage.setItem('userProfileList', JSON.stringify(userProfiles));\r\n    };\r\n\r\n    saveUserProfilesForSession();\r\n\r\n    settingsAddNewUserBtn.style.display = 'inline';\r\n    settingsConfirmNewUserBtn.style.display = 'none';\r\n  } else {\r\n    alert('Please fill in all fields and a valid email address to create a new user profile!');\r\n  }\r\n  disableEditUserBtn();\r\n};\r\n\r\n// Fucntion for disabling the edit user button if there are no user exists\r\nconst disableEditUserBtn = () => {\r\n  if (JSON.parse(sessionStorage.getItem('userProfileList')).length < 1) {\r\n    document.getElementById('settingsEditUsers').disabled = true;\r\n  } else {\r\n    document.getElementById('settingsEditUsers').disabled = false;\r\n  }\r\n};\r\n\r\n// Function for saving temp scale prefernce to sessionStorage\r\nconst savePreferences = () => {\r\n  const fTempSelection = document.getElementById('customRadioInline1');\r\n  const cTempSelection = document.getElementById('customRadioInline2');\r\n  if (sessionStorage.getItem('tempScaleSelection') === 'null') {\r\n    return;\r\n  } else if (fTempSelection.checked === true) {\r\n    sessionStorage.setItem('tempScaleSelection', 'F');\r\n    fTempSelection.checked = true;\r\n    cTempSelection.checked = false;\r\n  } else {\r\n    sessionStorage.setItem('tempScaleSelection', 'C');\r\n    fTempSelection.checked = false;\r\n    cTempSelection.checked = true;\r\n  }\r\n};\r\n\r\n// Function to update DOM for temp scale selection on page load using preferences saved in sessionStorage\r\nconst loadSavedPreferences = () => {\r\n  const fTempSelection = document.getElementById('customRadioInline1');\r\n  const cTempSelection = document.getElementById('customRadioInline2');\r\n\r\n  if (sessionStorage.getItem('tempScaleSelection') === null) {\r\n    fTempSelection.checked = true;\r\n  } else {\r\n    const selector = sessionStorage.getItem('tempScaleSelection');\r\n    if (selector === 'F') {\r\n      fTempSelection.checked = true;\r\n      cTempSelection.checked = false;\r\n    } else {\r\n      fTempSelection.checked = false;\r\n    cTempSelection.checked = true;\r\n    }\r\n  }\r\n};\r\n\r\n// Function for dynamically updating user select list on edit user profile modal\r\nconst modifyDropMenu = () => {\r\n  const storedUserList = JSON.parse(sessionStorage.getItem('userProfileList'))\r\n    .length;\r\n  const insertionPlacement = document.getElementById('userIDEditUserSelect');\r\n  insertionPlacement.innerHTML = '';\r\n  let optionCounter = 1;\r\n  for (let i = 0; i < storedUserList; i++) {\r\n    const optionElement = document.createElement('option');\r\n    optionElement.innerText = optionCounter;\r\n    insertionPlacement.insertAdjacentElement('beforeend', optionElement);\r\n    optionCounter++;\r\n  }\r\n};\r\n\r\n// Regex Function for validating email input\r\nfunction validateEmail(elementValue) {\r\n  // eslint-disable-next-line require-unicode-regexp\r\n  let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$/;\r\n  return emailPattern.test(elementValue);\r\n}\r\n\r\n// Function for saving changes made to users in the edit user profile modal\r\nconst saveEditUserProfiles = () => {\r\n  const userID = document.getElementById('userIDEditUserSelect').options\r\n    .selectedIndex;\r\n  const newUserName = document.getElementById('newNameEditUser').value;\r\n  const newUserEmail = document.getElementById('newEmaileditUser').value;\r\n  const newUserPhone = document.getElementById('newPhoneEditUser').value;\r\n  const Users = JSON.parse(sessionStorage.getItem('userProfileList'));\r\n  const validEmail = validateEmail(newUserEmail);\r\n  // eslint-disable-next-line no-negated-condition\r\n  if (!validEmail) {\r\n    alert('Please enter a valid email address');\r\n    // eslint-disable-next-line no-undef\r\n    $('#userIDEditUserSelectModal').modal('toggle');\r\n    return;\r\n  } else {\r\n    if (newUserName && newUserEmail && newUserPhone) {\r\n      Users[userID].userName = newUserName;\r\n      Users[userID].email = newUserEmail;\r\n      Users[userID].userPhone = newUserPhone;\r\n      sessionStorage.setItem('userProfileList', JSON.stringify(Users));\r\n      // eslint-disable-next-line no-undef\r\n      $('#userIDEditUserSelectModal').modal('toggle');\r\n      location.reload();\r\n    } else {\r\n      alert('Please fill in all fields!');\r\n      // eslint-disable-next-line no-undef\r\n      $('#userIDEditUserSelectModal').modal('toggle');\r\n    }\r\n  }\r\n};\r\n\r\n// Function for deleting a user from the user profile table\r\nconst deleteUser = () => {\r\n  const userID = +document.getElementById('userIDEditUserSelect')\r\n    .firstElementChild.innerText;\r\n  let usersListHelper = JSON.parse(sessionStorage.getItem('userProfileList'));\r\n  usersListHelper = usersListHelper.filter((user) => user.userIndex !== userID);\r\n  for (const user of usersListHelper) {\r\n    if (user.userIndex > userID) {\r\n      user.userIndex -= 1;\r\n    }\r\n  }\r\n  sessionStorage.setItem('userProfileList', JSON.stringify(usersListHelper));\r\n  location.reload();\r\n};\r\n\r\n// Helper for button selector adding new user\r\nconst settingsConfirmNewUserBtn = document.getElementById(\r\n  'settingsConfirmNewUser'\r\n);\r\n\r\n// Button handler for adding new user to user profile table\r\nsettingsAddNewUserBtn.addEventListener('click', editAddUser);\r\n\r\n// Button handler for saving new user data\r\nsettingsConfirmNewUserBtn.addEventListener('click', confirmAddUser);\r\n\r\n// Button handler for opening edit user modal for user profile table\r\ndocument\r\n  .getElementById('settingsEditUsers')\r\n  .addEventListener('click', modifyDropMenu);\r\n\r\n// Btn handler for updating edits to user profiles\r\ndocument\r\n  .getElementById('updateEditUserModalBtn')\r\n  .addEventListener('click', saveEditUserProfiles);\r\n\r\n// Btn handler for saving temperature scale preference\r\ndocument\r\n  .getElementById('savePreferencesBtn')\r\n  .addEventListener('click', savePreferences);\r\n\r\n// Btn handler for deleting user on the editUser modal for user profiles\r\ndocument\r\n  .getElementById('deleteEditUserModalBtn')\r\n  .addEventListener('click', deleteUser);\r\n\r\n// Page initialization\r\nconst loadSettingsPage = () => {\r\n  loadSavedCompanyData();\r\n  renderUsers();\r\n  loadSavedPreferences();\r\n};\r\n\r\nloadSettingsPage();\r\n\n\n//# sourceURL=webpack:///./src/settings.js?");
+
+/***/ })
+
+/******/ });

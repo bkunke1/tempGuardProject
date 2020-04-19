@@ -2,7 +2,7 @@ const path = require('path');
 
 // eslint-disable-next-line no-undef
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
         dashboard: './src/dashboard.js',
         history: './src/history.js',
@@ -13,5 +13,5 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'assets', 'scripts')
     }
-    devtool: 'cheap-module-eval-source-map'
+    devtool: 'cheap-source-map'
 };

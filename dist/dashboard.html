@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dashboard</title>
+
+    <!-- Bootstrap link -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome link -->
+    <script
+      src="https://kit.fontawesome.com/6dd5a532d9.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" type="text/css" href="/dist/assets/css/styles.css" />
+  </head>
+
+  <body>
+    <section id="navbar">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"
+          ><i class="fas fa-shield-alt"></i> TempGuard</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item active mx-auto">
+              <a class="nav-link" href="#"
+                >Dashboard<span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="history.html">History</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="settings.html">Settings</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="support.html">Support</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Button trigger tutorial modal -->
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-toggle="modal"
+          data-target="#tutorialModal"
+        >
+          View Tutorial
+        </button>
+      </nav>
+    </section>
+
+    <section id="addSensorBtnSection">
+      <div class="text-center pt-3 mx-3">
+        <!-- Button trigger addSendorModal -->
+        <button
+          type="button"
+          id="dashAddSensBtn"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#dashAddSensorModal"
+        >
+          Add Sensor <i class="fas fa-temperature-high"></i>
+        </button>
+      </div>
+
+      <!-- Add Sensor Modal -->
+      <div
+        class="modal fade"
+        id="dashAddSensorModal"
+        data-backdrop="static"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="dashAddSensorModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="dashAddSensorModalLabel">
+                Add Sensor Form
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label>Sensor Name</label>
+                  <input
+                    type="text"
+                    maxlength="12"
+                    class="form-control"
+                    id="sensorName1"
+                  />
+                </div>
+                <div class="form-group row">
+                  <div class="col-xs-3 mx-auto">
+                    <label
+                      data-toggle="tooltip"
+                      data-placement="right"
+                      title="Sensor will enter Alarm state when above this temperature."
+                      >High Alarm</label
+                    >
+                    <input type="text" class="form-control" id="highAlarm1" />
+                  </div>
+                  <div class="col-xs-3 mx-auto">
+                    <label
+                      data-toggle="tooltip"
+                      data-placement="right"
+                      title="Sensor will enter Alarm state when below this temperature."
+                      >Low Alarm</label
+                    >
+                    <input type="text" class="form-control" id="lowAlarm1" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-xs-3 mx-auto">
+                    <label
+                      data-toggle="tooltip"
+                      data-placement="right"
+                      title="Modifies the upper range of thermometer graphic."
+                      >Range Max</label
+                    >
+                    <input type="text" class="form-control" id="rangeMax1" />
+                  </div>
+                  <div class="col-xs-3 mx-auto">
+                    <label
+                      data-toggle="tooltip"
+                      data-placement="right"
+                      title="Modifies the lower range of thermometer graphic."
+                      >Range Min</label
+                    >
+                    <input type="text" class="form-control" id="rangeMin1" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-xs-3 mx-auto">
+                    <label
+                      data-toggle="tooltip"
+                      data-placement="right"
+                      title="Sets the initial temperature for a sensor."
+                      >Calibrate Initial Temp</label
+                    >
+                    <input type="text" class="form-control" id="initialTemp" />
+                  </div>
+                  <!-- <div class="col-xs-3 mx-auto">
+                    <label>Low Alarm</label>
+                    <input type="text" class="form-control" id="#" />
+                  </div> -->
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                id="dashAddSensorModalCloseBtn"
+                type="button"
+                class="btn btn-warning"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                id="dashAddSensorModalUpdateBtn"
+                class="btn btn-success"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Edit Sensor Modal -->
+    <div
+      class="modal fade"
+      id="dashEditSensorModal"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="dashEditSensorModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="dashEditSensorModalLabel">
+              Edit Sensor Form
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div id="modalID"></div>
+              <div class="form-group">
+                <label>Sensor Name</label>
+                <input
+                  type="text"
+                  maxlength="12"
+                  class="form-control"
+                  id="editSensorName1"
+                />
+              </div>
+              <div class="form-group row">
+                <div class="col-xs-3 mx-auto">
+                  <label
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="Sensor will enter Alarm state when above this temperature."
+                    >High Alarm</label
+                  >
+                  <input type="text" class="form-control" id="editHighAlarm1" />
+                </div>
+                <div class="col-xs-3 mx-auto">
+                  <label
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="Sensor will enter Alarm state when below this temperature."
+                    >Low Alarm</label
+                  >
+                  <input type="text" class="form-control" id="editLowAlarm1" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-xs-3 mx-auto">
+                  <label
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="Modifies the upper range of thermometer graphic."
+                    >Range Max</label
+                  >
+                  <input type="text" class="form-control" id="editRangeMax1" />
+                </div>
+                <div class="col-xs-3 mx-auto">
+                  <label
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="Modifies the lower range of thermometer graphic."
+                    >Range Min</label
+                  >
+                  <input type="text" class="form-control" id="editRangeMin1" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-xs-3 mx-auto">
+                  <label
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="Allows for the current temperature to be overridden"
+                    >Calibrate Temp</label
+                  >
+                  <input type="text" class="form-control" id="editTemp" />
+                </div>
+                <!-- <div class="col-xs-3 mx-auto">
+                <label>Low Alarm</label>
+                <input type="text" class="form-control" id="#" />
+              </div> -->
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="dashEditSensorModalCloseBtn"
+              type="button"
+              class="btn btn-warning"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              id="dashEditSensorModalUpdateBtn"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+            <button
+              type="button"
+              id="dashEditSensorModalDeleteBtn"
+              class="btn btn-danger"
+              data-toggle="modal"
+              data-target="#confirmationModal"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tutorial Modal -->
+    <section class="text-center">
+      <!-- Tutorial Modal -->
+      <div
+        class="modal fade"
+        id="tutorialModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="tutorialModalTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5
+                class="modal-title text-center mx-auto"
+                id="tutorialModalTitle"
+              >
+                TempGuard Tutorial
+              </h5>
+            </div>
+            <div class="modal-body bg-dark">
+              <div class="container">
+                <div class="row pr-0">
+                  <div class="col-md pr-0 pl-0">
+                    <div
+                      id="carouselExampleControls"
+                      class="carousel slide bg-dark"
+                      data-ride="carousel"
+                      data-interval="false"
+                      data-wrap="false"
+                    >
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide1.png"
+                            alt="First slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            TempGuard is a web application that allows users to
+                            monitor temperatures in critical environments via
+                            sensors from a browser.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide2.png"
+                            alt="Second slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            Monitoring temperature controlled environments is
+                            critical for many businesses.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide3.png"
+                            alt="Third slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            Temperatures are monitored by low voltage probes
+                            wired to a receiver which is connected to your
+                            network.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide4.png"
+                            alt="Fourth slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            In this demonstration however we will be simulating
+                            the live temperature fluctuations so that no
+                            hardware is necessary.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide5.png"
+                            alt="Fifth slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            Each sensor is customizable allowing for valid
+                            temperature ranges. If a sensor reads a temperature
+                            outside a given range it will go into alarm mode.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide6.png"
+                            alt="Sixth slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            If a sensor enters alarm mode it can send a warning
+                            email or SMS text to users that are setup in the
+                            settings page.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide7.png"
+                            alt="Seventh slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            Getting notifications when refrigeration equipment
+                            malfunctions helps avoid crisis and can save
+                            inventory from being damaged or lossed.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide8.png"
+                            alt="Eighth slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            The Dashboard displays your sensors and important
+                            information. This is where you can add/edit/remove
+                            sensors.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide9.png"
+                            alt="Second slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            The History page displays historical data in a line
+                            chart for a selected sensor. Seeing patterns in
+                            temperature fluctuations can be very useful to
+                            determine issues and prompt corrective action.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide10.png"
+                            alt="Second slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            The settings page is where you enter your company
+                            information and setup users for receiving alerts.
+                          </h5>
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            class="d-block w-100"
+                            src="./assets/images/slide11.png"
+                            alt="Second slide"
+                          />
+                          <h5 class="text-light mt-4">
+                            Lastly, if you are in need of support please visit
+                            the support page for our contact information.
+                            <br />
+                            <br />
+                            Thank you for using TempGuard!
+                          </h5>
+                        </div>
+                      </div>
+                      <a
+                        class="carousel-control-prev"
+                        href="#carouselExampleControls"
+                        role="button"
+                        data-slide="prev"
+                      >
+                        <span
+                          class="carousel-control-prev-icon"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a
+                        class="carousel-control-next"
+                        href="#carouselExampleControls"
+                        role="button"
+                        data-slide="next"
+                      >
+                        <span
+                          class="carousel-control-next-icon"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+              >
+                Got it!
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal" tabindex="-1" role="dialog" id="confirmationModal">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-body">
+            <p class="text-center">
+              Are you sure you want to delete this sensor?
+            </p>
+          </div>
+          <div class="modal-footer mx-auto">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+              Yes, Delete!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="sensors-1-2-3">
+      <div class="container">
+        <div class="row">
+          <!-- First Sensor -->
+          <div id="s0" class="col-lg-4 inactive-box">
+            <div class="float-right temp-gauge pr-1 mt-3">
+              <svg width="100" height="220" style="background: transparent;">
+                <svg x="5" y="0">
+                  <rect
+                    x="20"
+                    y="0"
+                    width="50"
+                    height="220"
+                    style="fill: black;"
+                  />
+                  <svg x="20" y="0">
+                    <rect
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: red;"
+                    />
+                    <rect
+                      id="validTempZone1"
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: green;"
+                    />
+                  </svg>
+                  <svg id="tempBar0">
+                    <rect
+                      x="20"
+                      y="150"
+                      width="50"
+                      height="4"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="20,146 30,152 20,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="70,146 60,152 70,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                  </svg>
+                  <svg>
+                    <rect
+                      x="0"
+                      y="2.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="52.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="104"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="155"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="206"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <h5
+                      id="tempScaleNumberMax1"
+                      class="tempScaleNumberMax"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMaxAlarm1"
+                      class="tempScaleNumberMaxAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleMarkerZero1"
+                      class="tempScaleMarkerZero"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMinAlarm1"
+                      class="tempScaleNumberMinAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMin1"
+                      class="tempScaleNumberMin"
+                    ></h5>
+                  </svg>
+                </svg>
+              </svg>
+            </div>
+            <div class="sensorbox">
+              <h6>Sensor 1</h6>
+              <h3 id="sensor0-name">Freezer 1</h3>
+              <div class="ml-2">
+                <h5>
+                  Current Temp: <span id="sensor0-currentTemp"></span
+                  ><span class="cf-selector"></span>
+                </h5>
+                <h6>Status: <span id="sensor0-alarmStatus">Normal</span></h6>
+                <h6>
+                  High Alarm: <span id="sensor0-highAlarm">5</span
+                  ><span class="cf-selector"></span>
+                </h6>
+                <h6>
+                  Low Alarm: <span id="sensor0-lowAlarm">-30</span
+                  ><span class="cf-selector"></span>
+                </h6>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  id="editSensorBtn"
+                  class="mx-auto btn btn-success btn-sm ml-3 mt-2"
+                  data-toggle="modal"
+                  data-target="#dashEditSensorModal"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Second Sensor -->
+          <div id="s1" class="col-lg-4 inactive-box">
+            <div class="float-right temp-gauge pr-1 mt-3">
+              <svg width="100" height="220" style="background: transparent;">
+                <svg x="5" y="0">
+                  <rect
+                    x="20"
+                    y="0"
+                    width="50"
+                    height="220"
+                    style="fill: black;"
+                  />
+                  <svg x="20" y="0">
+                    <rect
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: red;"
+                    />
+                    <rect
+                      id="validTempZone2"
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: green;"
+                    />
+                  </svg>
+                  <svg id="tempBar1">
+                    <rect
+                      x="20"
+                      y="150"
+                      width="50"
+                      height="4"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="20,146 30,152 20,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="70,146 60,152 70,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                  </svg>
+                  <svg>
+                    <rect
+                      x="0"
+                      y="2.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="52.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="104"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="155"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="206"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <h5
+                      id="tempScaleNumberMax2"
+                      class="tempScaleNumberMax"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMaxAlarm2"
+                      class="tempScaleNumberMaxAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleMarkerZero2"
+                      class="tempScaleMarkerZero"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMinAlarm2"
+                      class="tempScaleNumberMinAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMin2"
+                      class="tempScaleNumberMin"
+                    ></h5>
+                  </svg>
+                </svg>
+              </svg>
+            </div>
+            <div class="sensorbox">
+              <h6>Sensor 2</h6>
+              <h3 id="sensor1-name">Freezer 1</h3>
+              <div class="ml-2">
+                <h5>
+                  Current Temp: <span id="sensor1-currentTemp"></span
+                  ><span class="cf-selector"></span>
+                </h5>
+                <h6>Status: <span id="sensor1-alarmStatus">Normal</span></h6>
+                <h6>
+                  High Alarm: <span id="sensor1-highAlarm">5</span
+                  ><span class="cf-selector"></span>
+                </h6>
+                <h6>
+                  Low Alarm: <span id="sensor1-lowAlarm">-30</span
+                  ><span class="cf-selector"></span>
+                </h6>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  id="editSensorBtn2"
+                  class="mx-auto btn btn-success btn-sm ml-3 mt-2"
+                  data-toggle="modal"
+                  data-target="#dashEditSensorModal"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Third Sensor -->
+          <div id="s2" class="col-lg-4 inactive-box">
+            <div class="float-right temp-gauge pr-1 mt-3">
+              <svg width="100" height="220" style="background: transparent;">
+                <svg x="5" y="0">
+                  <rect
+                    x="20"
+                    y="0"
+                    width="50"
+                    height="220"
+                    style="fill: black;"
+                  />
+                  <svg x="20" y="0">
+                    <rect
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: red;"
+                    />
+                    <rect
+                      id="validTempZone3"
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: green;"
+                    />
+                  </svg>
+                  <svg id="tempBar2">
+                    <rect
+                      x="20"
+                      y="150"
+                      width="50"
+                      height="4"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="20,146 30,152 20,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="70,146 60,152 70,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                  </svg>
+                  <svg>
+                    <rect
+                      x="0"
+                      y="2.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="52.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="104"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="155"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="206"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <h5
+                      id="tempScaleNumberMax3"
+                      class="tempScaleNumberMax"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMaxAlarm3"
+                      class="tempScaleNumberMaxAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleMarkerZero3"
+                      class="tempScaleMarkerZero"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMinAlarm3"
+                      class="tempScaleNumberMinAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMin3"
+                      class="tempScaleNumberMin"
+                    ></h5>
+                  </svg>
+                </svg>
+              </svg>
+            </div>
+            <div class="sensorbox">
+              <h6>Sensor 3</h6>
+              <h3 id="sensor2-name">Freezer 1</h3>
+              <div class="ml-2">
+                <h5>
+                  Current Temp: <span id="sensor2-currentTemp"></span
+                  ><span class="cf-selector"></span>
+                </h5>
+                <h6>Status: <span id="sensor2-alarmStatus">Normal</span></h6>
+                <h6>
+                  High Alarm: <span id="sensor2-highAlarm">5</span
+                  ><span class="cf-selector"></span>
+                </h6>
+                <h6>
+                  Low Alarm: <span id="sensor2-lowAlarm">-30</span
+                  ><span class="cf-selector"></span>
+                </h6>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  id="editSensorBtn3"
+                  class="mx-auto btn btn-success btn-sm ml-3 mt-2"
+                  data-toggle="modal"
+                  data-target="#dashEditSensorModal"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sensors-4-5-6">
+      <div class="container">
+        <div class="row">
+          <!-- Fourth Sensor -->
+          <div id="s3" class="col-lg-4 inactive-box">
+            <div class="float-right temp-gauge pr-1 mt-3">
+              <svg width="100" height="220" style="background: transparent;">
+                <svg x="5" y="0">
+                  <rect
+                    x="20"
+                    y="0"
+                    width="50"
+                    height="220"
+                    style="fill: black;"
+                  />
+                  <svg x="20" y="0">
+                    <rect
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: red;"
+                    />
+                    <rect
+                      id="validTempZone4"
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: green;"
+                    />
+                  </svg>
+                  <svg id="tempBar3">
+                    <rect
+                      x="20"
+                      y="150"
+                      width="50"
+                      height="4"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="20,146 30,152 20,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="70,146 60,152 70,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                  </svg>
+                  <svg>
+                    <rect
+                      x="0"
+                      y="2.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="52.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="104"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="155"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="206"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <h5
+                      id="tempScaleNumberMax4"
+                      class="tempScaleNumberMax"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMaxAlarm4"
+                      class="tempScaleNumberMaxAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleMarkerZero4"
+                      class="tempScaleMarkerZero"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMinAlarm4"
+                      class="tempScaleNumberMinAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMin4"
+                      class="tempScaleNumberMin"
+                    ></h5>
+                  </svg>
+                </svg>
+              </svg>
+            </div>
+            <div class="sensorbox">
+              <h6>Sensor 4</h6>
+              <h3 id="sensor3-name">Freezer 1</h3>
+              <div class="ml-2">
+                <h5>
+                  Current Temp: <span id="sensor3-currentTemp"></span
+                  ><span class="cf-selector"></span>
+                </h5>
+                <h6>Status: <span id="sensor3-alarmStatus">Normal</span></h6>
+                <h6>
+                  High Alarm: <span id="sensor3-highAlarm">5</span
+                  ><span class="cf-selector"></span>
+                </h6>
+                <h6>
+                  Low Alarm: <span id="sensor3-lowAlarm">-30</span
+                  ><span class="cf-selector"></span>
+                </h6>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  id="editSensorBtn4"
+                  class="mx-auto btn btn-success btn-sm ml-3 mt-2"
+                  data-toggle="modal"
+                  data-target="#dashEditSensorModal"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Fifth Sensor -->
+          <div id="s4" class="col-lg-4 inactive-box">
+            <div class="float-right temp-gauge pr-1 mt-3">
+              <svg width="100" height="220" style="background: transparent;">
+                <svg x="5" y="0">
+                  <rect
+                    x="20"
+                    y="0"
+                    width="50"
+                    height="220"
+                    style="fill: black;"
+                  />
+                  <svg x="20" y="0">
+                    <rect
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: red;"
+                    />
+                    <rect
+                      id="validTempZone5"
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: green;"
+                    />
+                  </svg>
+                  <svg id="tempBar4">
+                    <rect
+                      x="20"
+                      y="150"
+                      width="50"
+                      height="4"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="20,146 30,152 20,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="70,146 60,152 70,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                  </svg>
+                  <svg>
+                    <rect
+                      x="0"
+                      y="2.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="52.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="104"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="155"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="206"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <h5
+                      id="tempScaleNumberMax5"
+                      class="tempScaleNumberMax"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMaxAlarm5"
+                      class="tempScaleNumberMaxAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleMarkerZero5"
+                      class="tempScaleMarkerZero"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMinAlarm5"
+                      class="tempScaleNumberMinAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMin5"
+                      class="tempScaleNumberMin"
+                    ></h5>
+                  </svg>
+                </svg>
+              </svg>
+            </div>
+            <div class="sensorbox">
+              <h6>Sensor 5</h6>
+              <h3 id="sensor4-name">Freezer 1</h3>
+              <div class="ml-2">
+                <h5>
+                  Current Temp: <span id="sensor4-currentTemp"></span
+                  ><span class="cf-selector"></span>
+                </h5>
+                <h6>Status: <span id="sensor4-alarmStatus">Normal</span></h6>
+                <h6>
+                  High Alarm: <span id="sensor4-highAlarm">5</span
+                  ><span class="cf-selector"></span>
+                </h6>
+                <h6>
+                  Low Alarm: <span id="sensor4-lowAlarm">-30</span
+                  ><span class="cf-selector"></span>
+                </h6>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  id="editSensorBtn5"
+                  class="mx-auto btn btn-success btn-sm ml-3 mt-2"
+                  data-toggle="modal"
+                  data-target="#dashEditSensorModal"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Sixth Sensor -->
+          <div id="s5" class="col-lg-4 inactive-box">
+            <div class="float-right temp-gauge pr-1 mt-3">
+              <svg width="100" height="220" style="background: transparent;">
+                <svg x="5" y="0">
+                  <rect
+                    x="20"
+                    y="0"
+                    width="50"
+                    height="220"
+                    style="fill: black;"
+                  />
+                  <svg x="20" y="0">
+                    <rect
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: red;"
+                    />
+                    <rect
+                      id="validTempZone6"
+                      x="5"
+                      y="5"
+                      width="40"
+                      height="210"
+                      style="fill: green;"
+                    />
+                  </svg>
+                  <svg id="tempBar5">
+                    <rect
+                      x="20"
+                      y="150"
+                      width="50"
+                      height="4"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="20,146 30,152 20,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                    <polygon
+                      points="70,146 60,152 70,158"
+                      style="fill: yellow; stroke: black; stroke-width: 2;"
+                    />
+                  </svg>
+                  <svg>
+                    <rect
+                      x="0"
+                      y="2.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="52.5"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="104"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="155"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <rect
+                      x="0"
+                      y="206"
+                      width="10"
+                      height="2.5"
+                      style="fill: black;"
+                    />
+                    <h5
+                      id="tempScaleNumberMax6"
+                      class="tempScaleNumberMax"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMaxAlarm6"
+                      class="tempScaleNumberMaxAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleMarkerZero6"
+                      class="tempScaleMarkerZero"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMinAlarm6"
+                      class="tempScaleNumberMinAlarm"
+                    ></h5>
+                    <h5
+                      id="tempScaleNumberMin6"
+                      class="tempScaleNumberMin"
+                    ></h5>
+                  </svg>
+                </svg>
+              </svg>
+            </div>
+            <div class="sensorbox">
+              <h6>Sensor 6</h6>
+              <h3 id="sensor5-name">Freezer 1</h3>
+              <div class="ml-2">
+                <h5>
+                  Current Temp: <span id="sensor5-currentTemp"></span
+                  ><span class="cf-selector"></span>
+                </h5>
+                <h6>Status: <span id="sensor5-alarmStatus">Normal</span></h6>
+                <h6>
+                  High Alarm: <span id="sensor5-highAlarm">5</span
+                  ><span class="cf-selector"></span>
+                </h6>
+                <h6>
+                  Low Alarm: <span id="sensor5-lowAlarm">-30</span
+                  ><span class="cf-selector"></span>
+                </h6>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  id="editSensorBtn6"
+                  class="mx-auto btn btn-success btn-sm ml-3 mt-2"
+                  data-toggle="modal"
+                  data-target="#dashEditSensorModal"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <!-- <div class="container">   !! this container is currently disabled for ease of use for new viewers !!
+        <div class="row">
+          <div class="col-md-6 text-center" id="btnPadding"> -->
+      <!-- Button trigger simulateTempFeed -->
+      <!-- <button type="button" id="simTempBtn" class="btn btn-info disabled">
+              Simulate Temp Feeds <i class="fas fa-chart-line"></i>
+            </button>
+          </div>
+          <div class="col-md-6 text-center"> -->
+      <!-- Button trigger simulateTempFeed -->
+      <!-- <button type="button" id="stopTempFeedBtn" class="btn btn-danger">
+              Stop Temp Feed
+            </button>
+          </div>
+        </div>
+      </div> -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mx-auto text-center pt-1 mb-3">
+            <i class="fas fa-shield-alt"></i> TempGuard
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- Local scripts -->
+    <script src="./assets/scripts/dashboard.bundle.js" defer></script>
+    <!-- <script src="scripts/dashboard.js" defer></script> -->
+    
+    <!-- Bootstrap 4 scripts -->
+    
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script> 
+  </body>
+</html>
