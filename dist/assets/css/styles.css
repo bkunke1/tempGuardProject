@@ -13,11 +13,11 @@
 /* Body */
 
 .background {
-  background-image: url(/dist/assets/images/background.png);
+  background-image: url(/assets/images/background.png);
 }
 
 .support-background {
-  background-image: url(/dist/assets/images/support3-bg.png);
+  background-image: url(/assets/images/support3-bg.png);
 }
 
 .transparent-bg {
@@ -26,7 +26,7 @@
 
 .bg {
   /* The image used */
-  background-image: url(/dist/assets/images/support3-bg.png);
+  background-image: url(/assets/images/support3-bg.png);
 
   /* Full height */
   height: 100%;
@@ -332,5 +332,17 @@ textarea.edit-background-change {
 }
 
 #tutorial-bg {
-  background-image: url(/dist/assets/images/tutorial-bg2.png;)
+  background-image: url(/assets/images/tutorial-bg2.png;)
+}
+
+.sensor-row-height {
+  height: 290px;
+}
+
+.sensor-height {
+  height: 230px;
+}
+
+html {
+  zoom: 1.25;
 }
