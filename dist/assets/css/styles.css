@@ -12,8 +12,13 @@
 
 /* Body */
 
+.main {
+  height: 540px;
+}
+
 .background {
-  background-image: url(/assets/images/background.png);
+  background-image: url(/assets/images/bg3.png);
+  background-size: 100% 540px;
 }
 
 .support-background {
@@ -56,7 +61,7 @@
 /* Features */
 
 .feature-mainTitle {
-  padding-top: 25%;
+  margin-top: 2rem;
   padding-bottom: 2%;
   font-weight: 900;
   font-size: 2.5rem;
@@ -76,7 +81,7 @@
 
 #testimonials {
   background-color: #153aec;
-  margin-top: 100px;
+  margin-top: 2rem;
   padding: 100px 0;
 }
 
@@ -109,20 +114,20 @@
 
 #cta {
   background-color: #153aec;
-  margin-top: 100px;
+  margin-top: 60px;
   padding: 100px 0;
 }
 
 /* Footer */
 
 #footer {
-  height: 100px;
+  height: 70px;
 }
 
 .footer-icon {
   color: #153aec;
   font-size: 2rem;
-  padding: 2% 3%;
+  padding: 20px 30px;
 }
 
 .manual-title {
@@ -286,6 +291,12 @@ textarea.edit-background-change {
   }
 }
 
+@media (max-width: 375) {
+  div#priceCards {
+    background: red;
+  }
+}
+
 .tempScaleNumberMax {
   color: black;
   font-size: small;
@@ -343,6 +354,56 @@ textarea.edit-background-change {
   height: 230px;
 }
 
-html {
-  zoom: 1.25;
+@media (max-width: 992px) {
+  #picGone {
+  margin-top: 1rem;
+  height: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  #picGone {
+  height: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  #picGone {
+  width: 150px;;
+  height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  ul {
+  position: absolute;
+  z-index: 2;
+  background-color: #2f008e;
+  padding: 2rem;
+  font-weight: bolder;
+  }
+}
+
+li {
+  padding-left: 2rem;
+}
+
+@media (max-width: 1199px) {
+  .container {
+  color: blue;
+  max-width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+  color: red;
+  max-width: 45%;
+  }
+  .sensorbox {
+    margin-bottom: 1rem;
+  }
+  .footerIcon {
+    display: none;
+  }
 }

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.25, shrink-to-fit=no"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>Project Title</title>
 
@@ -34,10 +34,10 @@
 
   </head>
 
-  <body class="background">
+  <body>
     <div id="top"></div>
 
-    <section class="main">
+    <section class="main background">
       <div class="container">
         <nav class="navbar navbar-expand-md navbar-dark bg-transparent">
           <a class="navbar-brand brand-text" href="#"
@@ -57,19 +57,19 @@
 
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
+              <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <a class="nav-link" href="#features"
-                  >Features <span class="sr-only">(current)</span></a
+                  >Features </a
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <a class="nav-link" href="#testimonials">Testimonials</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <a class="nav-link" href="#pricing">Pricing</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./dashboard.html">Demo</a>
+              <li class="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
+                <a class="nav-link" href="./dashboard.html">Demo <span class="sr-only">(current)</span></a>
               </li>
             </ul>
           </div>
@@ -79,12 +79,12 @@
       <div class="container">
         <div class="row bg-transparent pt-5">
           <div class="col-md-6">
-            <h1 class="text-white">
+            <h1 id="growText" class="text-white text-center">
               Automate your temperature monitoring with TempGuard
             </h1>
           </div>
           <div class="col-md-6 text-center">
-            <img src="/assets/images/mock_pc.png">
+            <img id="picGone" src="../assets/images/mock_pc.png">
           </div>
         </div>
       </div>
@@ -190,30 +190,30 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-lg-4 mb-4">
             <div class="card">
               <div class="card-body text-center">
-                <h2 class="card-title text-muted">Tier One</h2>
+                <h2 class="card-title text-muted">Bronze Tier</h2>
                 <h1 class="card-title pricing-text">$1000.00</h1>
                 <p class="card-text">6 Sensors</p>
                 <p class="card-text">1 Receiver</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4 mb-4">
             <div class="card">
               <div class="card-body text-center">
-                <h2 class="card-title text-muted">Tier Two</h2>
+                <h2 class="card-title text-muted">Silver Tier</h2>
                 <h1 class="card-title pricing-text">$1800.00</h1>
                 <p class="card-text">12 Sensors</p>
                 <p class="card-text">2 Receivers</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4 mb-4">
             <div class="card">
               <div class="card-body text-center">
-                <h2 class="card-title text-muted">Tier Three</h2>
+                <h2 class="card-title text-muted">Gold Tier</h2>
                 <h1 class="card-title pricing-text">$2499.00</h1>
                 <p class="card-text">18 Sensors</p>
                 <p class="card-text">3 Receivers</p>
