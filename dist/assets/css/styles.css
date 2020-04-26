@@ -108,6 +108,7 @@
 
 .card {
   box-shadow: 3px 4px 19px 7px rgba(0, 0, 0, 0.75);
+  margin: 0 1rem;
 }
 
 /* Call to Action Section */
@@ -390,16 +391,11 @@ li {
 
 @media (max-width: 1199px) {
   .container {
-  color: blue;
   max-width: 100%;
   }
 }
 
 @media (max-width: 991px) {
-  .container {
-  color: red;
-  max-width: 45%;
-  }
   .sensorbox {
     margin-bottom: 1rem;
   }
