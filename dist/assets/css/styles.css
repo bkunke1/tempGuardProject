@@ -58,6 +58,10 @@
   padding-left: 25%;
 }
 
+.demo-text {
+  font-size: 1.25rem;
+}
+
 /* Features */
 
 .feature-mainTitle {
@@ -111,12 +115,29 @@
   margin: 0 1rem;
 }
 
+.card-text {
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+
 /* Call to Action Section */
 
 #cta {
   background-color: #153aec;
   margin-top: 60px;
   padding: 100px 0;
+}
+
+.bronze-text {
+  color: #fca70ae8;
+}
+
+.silver-text {
+  color: #989999;
+}
+
+.gold-text {
+  color: #ffd000;
 }
 
 /* Footer */
@@ -347,8 +368,8 @@ textarea.edit-background-change {
   background-image: url(/assets/images/tutorial-bg2.png;)
 }
 
-.sensor-row-height {
-  height: 290px;
+.sensorbox {
+  height: 280px;
 }
 
 .sensor-height {
@@ -383,10 +404,12 @@ textarea.edit-background-change {
   padding: 2rem;
   font-weight: bolder;
   }
-}
-
-li {
-  padding-left: 2rem;
+  li {
+    padding-left: 2rem;
+  }
+  .intro-text {
+    padding-top: 0 !important;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -401,5 +424,57 @@ li {
   }
   .footerIcon {
     display: none;
+  }  
+  .sensor-row-height {
+    margin: 0;
+  }
+  .mobile-sensor-res {
+    width: 60%;
+    margin: auto; 
+  }
+  .mobile-sensor-res-mt {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 1086px) {
+  .demo-text {
+    text-align: right;
+  }
+}
+
+@media (max-width: 1085px) {
+  .demo-text {
+    text-align: center !important;
+    padding-right: 0 !important;
+  }
+}
+
+.modal-backdrop {
+  background-color: black;
+  opacity: .98 !important;
+}
+
+@media (max-width: 700px) {
+  .mobile-sensor-res {
+    width: 100%;
+    margin: auto; 
+  }
+}
+
+@media (max-width: 400px) {
+  .sensorbox {
+    padding-top: 1.5rem;
+    padding-left: .8rem;
+
+  }
+}
+
+@media (max-width: 360px) {
+  .sensorbox {
+    padding-left: .2rem;
+  }
+  .sensorbox h5{
+    font-size: .9rem;
   }
 }
