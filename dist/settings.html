@@ -108,11 +108,11 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity" />
+                    <input type="text" class="form-control" id="inputCity" placeholder="Atlanta"/>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputState">State</label>
-                    <select id="inputState" class="form-control">
+                    <select id="inputState" class="form-control" placeholder="Georgia">
                       <option selected>Choose...</option>
                       <option value="AL">Alabama</option>
                       <option value="AK">Alaska</option>
@@ -174,6 +174,7 @@
                       maxlength="5"
                       class="form-control"
                       id="inputZip"
+                      placeholder="30082"
                     />
                   </div>
                 </div>
@@ -195,59 +196,7 @@
             </form>
           </div>
         </div>
-        <div class="row pt-5">
-          <div class="col-md-12 mx-auto text-center mb-5">
-            <h3 class="mb-3">Scale of Temperature</h3>
-            <form>
-              <div class="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="customRadioInline1"
-                  name="customRadioInline1"
-                  class="custom-control-input"
-                  checked
-                />
-                <label class="custom-control-label" for="customRadioInline1"
-                  >Fahrenheit</label
-                >
-              </div>
-              <div
-                class="custom-control custom-radio custom-control-inline mb-2"
-              >
-                <input
-                  type="radio"
-                  id="customRadioInline2"
-                  name="customRadioInline1"
-                  class="custom-control-input"
-                />
-                <label class="custom-control-label" for="customRadioInline2"
-                  >Celsius</label
-                >
-              </div>
-              <!-- <h6>Alarm Hold</h6>
-              <div class="row">
-                <div class="col-md-2 mx-auto mb-3">
-                  <input type="text" class="form-control col-xs-2" id="alarmHold" />              
-                </div>
-              </div>
-              <h6>Log interval</h6>
-              <div class="row">
-                <div class="col-md-2 mx-auto mb-3">
-                  <input type="text" class="form-control" id="alarmHold" />
-                </div>
-              </div> -->
-
-              <button
-                type="button"
-                id="savePreferencesBtn"
-                class="btn btn-success"
-              >
-                Save
-              </button>
-            </form>
-          </div>
-        </div>
-
+        
         <div class="row">
           <div id="id1" class="col-md-12 text-center pt-3">
             <div>
@@ -303,6 +252,59 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <div class="row pt-5">
+          <div class="col-md-12 mx-auto text-center mb-5">
+            <h3 class="mb-3">Scale of Temperature</h3>
+            <form>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input
+                  type="radio"
+                  id="customRadioInline1"
+                  name="customRadioInline1"
+                  class="custom-control-input"
+                  checked
+                />
+                <label class="custom-control-label" for="customRadioInline1"
+                  >Fahrenheit</label
+                >
+              </div>
+              <div
+                class="custom-control custom-radio custom-control-inline mb-2"
+              >
+                <input
+                  type="radio"
+                  id="customRadioInline2"
+                  name="customRadioInline1"
+                  class="custom-control-input"
+                />
+                <label class="custom-control-label" for="customRadioInline2"
+                  >Celsius</label
+                >
+              </div>
+              <!-- <h6>Alarm Hold</h6>
+              <div class="row">
+                <div class="col-md-2 mx-auto mb-3">
+                  <input type="text" class="form-control col-xs-2" id="alarmHold" />              
+                </div>
+              </div>
+              <h6>Log interval</h6>
+              <div class="row">
+                <div class="col-md-2 mx-auto mb-3">
+                  <input type="text" class="form-control" id="alarmHold" />
+                </div>
+              </div> -->
+
+              <button
+                type="button"
+                id="savePreferencesBtn"
+                class="btn btn-success"
+              >
+                Save
+              </button>
+            </form>
           </div>
         </div>
 

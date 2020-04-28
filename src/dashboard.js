@@ -548,8 +548,8 @@ if (sessionStorage.getItem('sensorList')) {
   sensorList = JSON.parse(sessionStorage.getItem('sensorList'));
 } else {
   sensorList[0] = new Sensor('Cooler 1', 45, 55, 35, 65, 25);
-  sensorList[1] = new Sensor('Freezer 1', -5, 32, -30, 40, -40);
-  sensorList[2] = new Sensor('Dry Storage', 75, 90, 32, 100, 0);
+  sensorList[1] = new Sensor('Freezer 1', -5, 30, -30, 40, -40);
+  sensorList[2] = new Sensor('Dry Storage', 75, 90, 35, 100, 0);
   sessionStorage.setItem('sensorList', JSON.stringify(sensorList));
 }
 

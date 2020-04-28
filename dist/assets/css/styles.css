@@ -1,7 +1,7 @@
 /* Bootstrap */
 
 .row {
-  background: #f8f9fa;
+  /* background: #f8f9fa; */
   margin-top: 20px;
 }
 
@@ -18,7 +18,6 @@
 
 .background {
   background-image: url(/assets/images/bg3.png);
-  background-size: 100% 540px;
 }
 
 .support-background {
@@ -274,36 +273,23 @@ textarea.edit-background-change {
   font-family: 'arial black';
 }
 
-@media (max-width: 375) {
-  div#testquery {
-    color: white;
-    padding-right: 50%;
-  }
-}
-
 @media (max-width: 992px) {
   div#testquery {
     color: white;
-    padding-right: 60%;
+    padding: 0 3rem;
+  }
+  .address-text {
+    text-align: center;
+    margin-top: 2rem !important;
+  }
+  .support-background {
+    background-size: cover !important;
   }
 }
-@media (max-width: 800px) {
-  div#testquery {
-    color: white;
-    padding-right: 50%;
-  }
-}
+
 @media (max-width: 600px) {
   div#testquery {
-    color: white;
-    padding-right: 35%;
-  }
-}
-@media (max-width: 375px) {
-  div#testquery {
-    color: white;
-    padding-right: 10%;
-    padding-left: 10%;
+    padding: 0 1rem;
   }
 }
 
@@ -381,6 +367,9 @@ textarea.edit-background-change {
   margin-top: 1rem;
   height: 70%;
   }
+  .table-responsive {
+    display: block !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -396,13 +385,28 @@ textarea.edit-background-change {
   }
 }
 
+@media (max-width: 345px) { 
+  .brand-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 300px) { 
+  #picGone {
+    display: none;
+    }
+}
+
+
 @media (max-width: 767px) {
   ul {
   position: absolute;
-  z-index: 2;
+  right: 0;
+  z-index: 3;
   background-color: #2f008e;
   padding: 2rem;
   font-weight: bolder;
+  background-image: linear-gradient(#343a40, #49535d);
   }
   li {
     padding-left: 2rem;
@@ -434,7 +438,7 @@ textarea.edit-background-change {
   }
   .mobile-sensor-res-mt {
     margin-bottom: 1rem;
-  }
+  }  
 }
 
 @media (min-width: 1086px) {
@@ -476,5 +480,15 @@ textarea.edit-background-change {
   }
   .sensorbox h5{
     font-size: .9rem;
+  }
+}
+
+.table-responsive {
+  display: inline-table;
+}
+
+@media (max-width: 991px) {
+  .support-background {
+    background-image: url(/assets/images/support-bg-sm.png) !important;
   }
 }

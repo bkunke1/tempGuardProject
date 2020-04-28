@@ -24,7 +24,9 @@ function updateChartName(sensorID = 0) {
   const chartSensorName = document.getElementById('chartSensorName');
   if (sensorListData.length > 0) {
     chartSensorName.innerText = sensorListData[sensorID].name;
-  } else chartSensorName.innerText = 'Currently no sensor exists. Please create one to view this chart!';
+  } else
+    chartSensorName.innerText =
+      'Currently no sensor exists. Please create one to view this chart!';
 }
 updateChartName();
 
@@ -56,7 +58,8 @@ if (sensorListTempRecords[0].length === 0) {
 // am4core code - builds chart
 function makeChart(sensorID) {
   // Pulling data from selected sensor
-  const {tempRecords} = sensorListData[sensorID];
+  // eslint-disable-next-line object-curly-spacing
+  const { tempRecords } = sensorListData[sensorID];
 
   // Create chart instance
   let chart = am4core.create('chartdiv', am4charts.XYChart);
@@ -68,6 +71,8 @@ function makeChart(sensorID) {
   // Create axes
   let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
   dateAxis.renderer.minGridDistance = 50;
+  dateAxis.title.text = 'TimeLine';
+  dateAxis.dateFormats.setKey('MMM dd', 'hh:mm:ss a');
 
   // eslint-disable-next-line no-unused-vars
   let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
