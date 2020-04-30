@@ -47,6 +47,7 @@ addSelectionOptions();
 function renderChart() {
   const sensorID = document.getElementById('sensor-selection-options').value;
   updateChartName(sensorID);
+  am4core.disposeAllCharts();
   makeChart(sensorID);
 }
 
@@ -71,8 +72,8 @@ function makeChart(sensorID) {
   // Create axes
   let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
   dateAxis.renderer.minGridDistance = 50;
-  dateAxis.title.text = 'TimeLine';
-  dateAxis.dateFormats.setKey('MMM dd', 'hh:mm:ss a');
+  dateAxis.title.text = 'Date';
+  dateAxis.dateFormats.setKey('MMM dd hh:mm:ss a');
 
   // eslint-disable-next-line no-unused-vars
   let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
@@ -89,6 +90,9 @@ function makeChart(sensorID) {
   series.tooltip.background.fillOpacity = 0.5;
   series.tooltip.label.padding(12, 12, 12, 12);
 
+  // Adding yAxis Title
+  valueAxis.title.text = 'Temperature';
+
   // Add scrollbar
   chart.scrollbarX = new am4charts.XYChartScrollbar();
   chart.scrollbarX.series.push(series);
@@ -97,6 +101,9 @@ function makeChart(sensorID) {
   chart.cursor = new am4charts.XYCursor();
   chart.cursor.xAxis = dateAxis;
   chart.cursor.snapToSeries = series;
+
+  // Add responsive plugin
+  chart.responsive.enabled = true;
 }
 
 // Event listeners

@@ -11,7 +11,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'assets', 'scripts')
-    }
+        path: path.resolve(__dirname, 'dist/assets/scripts')
+    },
     devtool: 'cheap-source-map'
 };
